@@ -1,5 +1,5 @@
 // Just some experiments
-package javaexperiments;
+package jframe.coupled;
 
 import java.awt.*;
 import java.awt.event.*;
