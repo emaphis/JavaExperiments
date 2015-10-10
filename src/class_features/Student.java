@@ -18,13 +18,20 @@ class Student {
         this.name  = name;
     }
 
-    
     String getName() {
         return name;
     }
-    
+
     List<TestScore> getTestScores() {
         return testScores;
+    }
+
+    public int getAverage() {
+        int total = 0;
+        for (TestScore testScore : testScores) {
+            total += testScore.getPercentCorrect();
+        }
+        return total / testScores.size();
     }
 
 }
