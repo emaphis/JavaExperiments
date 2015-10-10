@@ -1,6 +1,8 @@
 
 package class_features;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -10,11 +12,12 @@ import java.util.List;
  */
 class Student {
     
-    private List<TestScore> testScores;
-    private String name;
+    private final List<TestScore> testScores;
+    private final String name;
     
     public Student(List<TestScore> scores, String name) {
-        this.testScores = scores;
+        this.testScores = Collections.unmodifiableList(
+                new ArrayList<>(scores));
         this.name  = name;
     }
 
