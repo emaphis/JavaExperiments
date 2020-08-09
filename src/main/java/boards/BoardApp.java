@@ -14,25 +14,20 @@ public class BoardApp {
 
     public static void main(String[] args) {
         //char[] pieces = {'1', '2', '3',  '4', '5', '6',  '7', '8', '9'};
-        System.out.println("Got here aaaaa");
         char[] pieces = getPieceNames();
         board = new Board(pieces);
-        System.out.println();
         board.outputBoard();
 
         gameLoop();
 
         //putPiece('X', 1, 2);
         //putPiece('O', 2, 2);
-        //putPiece('X', 3, 3);
-        //putPiece('O', 3, 3);
-        board.outputBoard();
     }
 
     private static void gameLoop() {
         boolean move = false;
         boolean finished = false;
-        Piece piece = Piece.X;   // start with 'X'
+        Piece piece = board.switchPiece(Piece.NONE);
         while (!finished) {
             while (!move) {
                 System.out.print("Enter the coordinates: ");
@@ -46,14 +41,12 @@ public class BoardApp {
     }
 
     static char[] getPieceNames() {
-        System.out.print("Enter the coordinates: ");
+        System.out.print("Enter cells: ");
         String line = scan.nextLine();
-        char[] pieceNames = line.toCharArray();
-        return pieceNames;
+        return line.toCharArray();
     }
 
     static void putPiece(char name, int col, int row) {
-        //System.out.print(board.empty(col, row) + ":");
         Piece piece = board.createPiece(name);
         if (board.empty(col, row)) {
             board.put(piece, col, row);
@@ -64,7 +57,7 @@ public class BoardApp {
 
     static boolean nextMove(Piece piece, String line) {
         if (!line.matches("\\d\\s\\d")) {
-            System.out.println("You should only use numbers!");
+            System.out.println("You should enter numbers!");
             return false;
         }
 
@@ -72,13 +65,13 @@ public class BoardApp {
 
         int col = Integer.parseInt(parts[0]);
         if (col > 3 || col < 1) {
-            System.out.println("Coordinates should be from 1 to 3");
+            System.out.println("Coordinates should be from 1 to 3!");
             return false;
         }
 
         int row = Integer.parseInt(parts[1]);
         if (row > 3 || row < 1) {
-            System.out.println("Coordinates should be from 1 to 3");
+            System.out.println("Coordinates should be from 1 to 3!");
             return false;
         }
 
@@ -100,7 +93,7 @@ public class BoardApp {
                 System.out.println("X wins");
                 return true;
             case OWINS:
-                System.out.println("X wins");
+                System.out.println("O wins");
                 return true;
             case IMPOSSIBLE:
                 System.out.println("Impossible");
@@ -109,10 +102,8 @@ public class BoardApp {
                 System.out.print("Draw");
                 return true;
             case NOTFINISHED:
-                return false;
             default:
                 return false;
-
         }
     }
 }

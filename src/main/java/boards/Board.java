@@ -42,13 +42,12 @@ public class Board {
     //** Convert char to Piece */
     public final Piece createPiece(char name) {
         switch (name) {
-            case '_':
-            case ' ':
-                return Piece.NONE;
             case 'X':
                 return Piece.X;
             case 'O':
                 return Piece.O;
+            case '_':
+            case ' ':
             default:
                 return Piece.NONE;
         }
@@ -68,15 +67,23 @@ public class Board {
 
     // Overly complete
     public Piece switchPiece(Piece piece) {
-        switch (piece) {
-            case NONE:  // X should always be first
-                return Piece.X;
-            case X:
+        int numX = countPiece(Piece.X);
+        int numO = countPiece(Piece.O);
+
+        if (numX + numO == 0) {
+            piece = Piece.X;
+        }
+
+        if (numX > numO) {
+            return Piece.O;
+        } else if (numO > numX) {
+            return Piece.X;
+        } else {  // X == O
+            if (piece == Piece.X) {
                 return Piece.O;
-            case O:
+            } else {
                 return Piece.X;
-            default:
-                return Piece.X;
+            }
         }
     }
 
