@@ -3,7 +3,9 @@ package boards;
 import java.util.Scanner;
 
 /**
- * (1, 3) (2, 3) (3, 3) col -> row (1, 2) (2, 2) (3, 2) (1, 1) (2, 1) (3, 1)
+ * (1, 3) (2, 3) (3, 3) col -> row
+ * (1, 2) (2, 2) (3, 2)
+ * (1, 1) (2, 1) (3, 1)
  */
 public class BoardApp {
 
@@ -16,6 +18,7 @@ public class BoardApp {
         char[] pieces = getPieceNames();
         board = new Board(pieces);
         System.out.println();
+        board.outputBoard();
 
         gameLoop();
 
@@ -43,7 +46,7 @@ public class BoardApp {
     }
 
     static char[] getPieceNames() {
-        System.out.print("Enter pieces: ");
+        System.out.print("Enter the coordinates: ");
         String line = scan.nextLine();
         char[] pieceNames = line.toCharArray();
         return pieceNames;

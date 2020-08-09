@@ -1,17 +1,25 @@
 package boards;
 
-/**
- * Represents a board with a layout of: (col, row)
- * (1, 3) (2, 3) (3, 3)
- * (1, 2) (2, 2) (3, 2)
- * (1, 1) (2, 1) (3, 1)
- *
- * @author emaphis
- */
+
 public class Board {
 
-    public static final int LEN = 3;
+    /**
+    * Represents a board with a layout of: (col, row)
+    * and a dimension of LEN * LEN == 9.
+    * (1, 3) (2, 3) (3, 3)
+    * (1, 2) (2, 2) (3, 2)
+    * (1, 1) (2, 1) (3, 1)
+    *
+    * Iterate:
+    *  for (int row = LEN; row > 0; row--) {
+    *      for (int col = 1; col <= LEN; col++) {
+    *          cell = get(col, row);
+    *      }
+    *  }
+    */
     private final Piece[][] board;
+    public static final int LEN = 3;
+
     private static final char[] clear = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
 
     public Board() {
@@ -54,7 +62,6 @@ public class Board {
         board[LEN - row][col - 1] = piece;
     }
 
-    //** space ' ' represents unoccupied cell */
     public boolean empty(int col, int row) {
         return get(col, row) == Piece.NONE;
     }
@@ -85,6 +92,7 @@ public class Board {
     }
 
     public void outputBoard() {
+        System.out.println();
         System.out.println("---------");
         System.out.printf("| %c %c %c |\n", get(1, 3).getPiece(), get(2, 3).getPiece(), get(3, 3).getPiece());
         System.out.printf("| %c %c %c |\n", get(1, 2).getPiece(), get(2, 2).getPiece(), get(3, 2).getPiece());
@@ -99,40 +107,30 @@ public class Board {
         boolean xWins = wins(Piece.X);
         boolean oWins = wins(Piece.O);
 
-        if (xWins && !oWins) {
-            return GameState.XWINS;
-        }
-
-        if (oWins && !xWins) {
-            //System.out.println("O wins");
-            return GameState.OWINS;
-        }
-
-        if (!isPossible() || (xWins && oWins)) {
+        if (xWins && oWins) {
             return GameState.IMPOSSIBLE;
         }
 
-        if (scratchGame()) {
-            //System.out.print("Draw");
+        if (xWins) {
+            return GameState.XWINS;
+        }
+
+        if (oWins) {
+            return GameState.OWINS;
+        }
+
+        int numX = countPiece(Piece.X);
+        int numO = countPiece(Piece.O);
+
+        if (!(numX == numO + 1 || numO == numX + 1 || numX == numO)) {
+            return GameState.IMPOSSIBLE;
+        }
+
+        if (numX + numO == LEN * LEN) {
             return GameState.SCRATCH;
         }
 
         return GameState.NOTFINISHED;
-    }
-
-    public boolean isPossible() {
-        int numX = 0;
-        int numO = 0;
-        for (int i = 0; i < LEN; i++) {
-            for (int j = 0; j < LEN; j++) {
-                if (board[i][j] == Piece.X) {
-                    numX++;
-                } else if (board[i][j] == Piece.O) {
-                    numO++;
-                }
-            }
-        }
-        return numX == numO + 1 || numO == numX + 1 || numX == numO;
     }
 
     public boolean wins(Piece piece) {
@@ -169,16 +167,16 @@ public class Board {
         return false;
     }
 
-    public boolean scratchGame() {
-        int count = 0;
+    public int countPiece(Piece piece) {
+        int num = 0;
         for (int i = 0; i < LEN; i++) {
             for (int j = 0; j < LEN; j++) {
-                if (board[i][j] == Piece.X || board[i][j] == Piece.O) {
-                    count++;
+                if (board[i][j] == piece) {
+                    num++;
                 }
             }
         }
-        return count == LEN * LEN;  // no '_'
+        return num;
     }
 
 }
