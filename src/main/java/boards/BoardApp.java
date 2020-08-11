@@ -14,8 +14,9 @@ public class BoardApp {
 
     public static void main(String[] args) {
         //char[] pieces = {'1', '2', '3',  '4', '5', '6',  '7', '8', '9'};
-        char[] pieces = getPieceNames();
-        board = new Board(pieces);
+        //char[] pieces = getPieceNames();
+        //board = new Board(pieces);
+        board = new Board();
         board.outputBoard();
 
         gameLoop();
@@ -26,17 +27,32 @@ public class BoardApp {
 
     private static void gameLoop() {
         boolean move = false;
+        Piece piece;
         boolean finished = false;
-        Piece piece = board.switchPiece(Piece.NONE);
+
+        // start game loop.
         while (!finished) {
-            while (!move) {
+
+            // 'X' plays.
+            piece = Piece.X;
+            while (!move) {  // loop unil legal X move.
                 System.out.print("Enter the coordinates: ");
                 String line = scan.nextLine();
-                move = nextMove(piece, line);
+                move = legalXMove(piece, line);
             }
-            piece = board.switchPiece(piece);
+
             move = false;
             finished = isFinished();
+
+            if (!finished) {
+
+                // 'O' plays
+                piece = Piece.O;
+                board.playEasy(piece);
+                finished = isFinished();
+            }
+
+            board.outputBoard();
         }
     }
 
@@ -55,7 +71,7 @@ public class BoardApp {
         }
     }
 
-    static boolean nextMove(Piece piece, String line) {
+    static boolean legalXMove(Piece piece, String line) {
         if (!line.matches("\\d\\s\\d")) {
             System.out.println("You should enter numbers!");
             return false;
@@ -75,14 +91,14 @@ public class BoardApp {
             return false;
         }
 
-        if (board.empty(col, row)) {
+        if (!board.empty(col, row)) {
+            System.out.println("This cell is occupied! Choose another one!");
+            return false;
+        } else {
             board.put(piece, col, row);
             board.outputBoard();
             return true;
         }
-
-        System.out.println("This cell is occupied! Choose another one!");
-        return false;
     }
 
     static boolean isFinished() {

@@ -1,24 +1,19 @@
 package boards;
 
+import java.util.Random;
 
 public class Board {
 
     /**
-    * Represents a board with a layout of: (col, row)
-    * and a dimension of LEN * LEN == 9.
-    * (1, 3) (2, 3) (3, 3)
-    * (1, 2) (2, 2) (3, 2)
-    * (1, 1) (2, 1) (3, 1)
-    *
-    * Iterate:
-    *  for (int row = LEN; row > 0; row--) {
-    *      for (int col = 1; col <= LEN; col++) {
-    *          cell = get(col, row);
-    *      }
-    *  }
-    */
+     * Represents a board with a layout of: (col, row) and a dimension of LEN *
+     * LEN == 9. (1, 3) (2, 3) (3, 3) (1, 2) (2, 2) (3, 2) (1, 1) (2, 1) (3, 1)
+     *
+     * Iterate: for (int row = LEN; row > 0; row--) { for (int col = 1; col <=
+     * LEN; col++) { cell = get(col, row); } }
+     */
     private final Piece[][] board;
     public static final int LEN = 3;
+    private static final Random rand = new Random();
 
     private static final char[] clear = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
 
@@ -65,6 +60,39 @@ public class Board {
         return get(col, row) == Piece.NONE;
     }
 
+    // Easy player.
+    public int countEmpty() {
+        int count = 0;
+        for (int row = LEN; row > 0; row--) {
+            for (int col = 1; col <= LEN; col++) {
+                if (empty(col, row)) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public void playEasy(Piece piece) {
+        int numEmpty = countEmpty();
+        int indx = rand.nextInt(numEmpty);
+        int count = 0;
+
+        // find the empty square to play, then play
+        for (int row = LEN; row > 0; row--) {
+            for (int col = 1; col <= LEN; col++) {
+                if (empty(col, row)) {
+                    if (count == indx) {
+                        put(piece, col, row);
+                        return;
+                    }
+                    count++;
+                }
+            }
+            System.out.println();
+        }
+    }
+
     // Overly complete
     public Piece switchPiece(Piece piece) {
         int numX = countPiece(Piece.X);
@@ -107,9 +135,7 @@ public class Board {
         System.out.println("---------");
     }
 
-
     //// following use board's raw format
-
     public GameState evaluateBoard() {
         boolean xWins = wins(Piece.X);
         boolean oWins = wins(Piece.O);
