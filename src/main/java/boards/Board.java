@@ -5,11 +5,18 @@ import java.util.Random;
 public class Board {
 
     /**
-     * Represents a board with a layout of: (col, row) and a dimension of LEN *
-     * LEN == 9. (1, 3) (2, 3) (3, 3) (1, 2) (2, 2) (3, 2) (1, 1) (2, 1) (3, 1)
+     * Represents a board with a layout of: (col, row)
+     * and a dimension of LEN * LEN = 9
+     * (1, 3) (2, 3) (3, 3)
+     * (1, 2) (2, 2) (3, 2)
+     * (1, 1) (2, 1) (3, 1)
      *
-     * Iterate: for (int row = LEN; row > 0; row--) { for (int col = 1; col <=
-     * LEN; col++) { cell = get(col, row); } }
+     * Iterate:
+     * for (int row = LEN; row > 0; row--) {
+     *     for (int col = 1; col <= LEN; col++) {
+     *          cell = get(col, row);
+     *      }
+     * }
      */
     private final Piece[][] board;
     public static final int LEN = 3;
@@ -34,7 +41,7 @@ public class Board {
         }
     }
 
-    //** Convert char to Piece */
+    /** Convert char to Piece */
     public final Piece createPiece(char name) {
         switch (name) {
             case 'X':
@@ -56,16 +63,16 @@ public class Board {
         board[LEN - row][col - 1] = piece;
     }
 
-    public boolean empty(int col, int row) {
+    public boolean isEmpty(int col, int row) {
         return get(col, row) == Piece.NONE;
     }
 
-    // Easy player.
+    ////// Easy player.
     public int countEmpty() {
         int count = 0;
         for (int row = LEN; row > 0; row--) {
             for (int col = 1; col <= LEN; col++) {
-                if (empty(col, row)) {
+                if (isEmpty(col, row)) {
                     count++;
                 }
             }
@@ -81,7 +88,7 @@ public class Board {
         // find the empty square to play, then play
         for (int row = LEN; row > 0; row--) {
             for (int col = 1; col <= LEN; col++) {
-                if (empty(col, row)) {
+                if (isEmpty(col, row)) {
                     if (count == indx) {
                         put(piece, col, row);
                         return;
@@ -89,45 +96,72 @@ public class Board {
                     count++;
                 }
             }
-            System.out.println();
         }
     }
 
-    // Overly complete
-    public Piece switchPiece(Piece piece) {
-        int numX = countPiece(Piece.X);
-        int numO = countPiece(Piece.O);
 
-        if (numX + numO == 0) {
-            piece = Piece.X;
+    /// Medium player
+
+    private void placeOnEmpty(Piece piece, int col1, int row1, int col2, int row2, int col3, int row3) {
+        int count = 0;
+        if (get(col1, row1) == Piece.NONE) {
+            put(piece, col1, row1);
+            return;
         }
-
-        if (numX > numO) {
-            return Piece.O;
-        } else if (numO > numX) {
-            return Piece.X;
-        } else {  // X == O
-            if (piece == Piece.X) {
-                return Piece.O;
-            } else {
-                return Piece.X;
-            }
+        if (get(col2, row2) == Piece.NONE) {
+            put(piece, col2, row2);
+            return;
+        }
+        if (get(col3, row3) == Piece.NONE) {
+            put(piece, col3, row3);
+            return;
         }
     }
 
-    public void out() {
-        Piece cell;
-        for (int row = LEN; row > 0; row--) {
-            for (int col = 1; col <= LEN; col++) {
-                cell = get(col, row);
-                System.out.print(cell.getPiece() + " ");
-            }
-            System.out.println();
+    public void playMedium(Piece piece) {
+        // rows
+        if (countLine(piece, get(1, 3), get(2, 3), get(3, 3)) == 2) {
+            placeOnEmpty(piece, 1, 3, 2, 3, 3, 3);
+            return;
         }
+        if (countLine(piece, get(1, 2), get(2, 2), get(3, 2)) == 2) {
+            placeOnEmpty(piece, 1, 2, 2, 2, 3, 2);
+            return;
+        }
+        if (countLine(piece, get(1, 1), get(2, 1), get(3, 1)) == 2) {
+            placeOnEmpty(piece, 1, 1, 2, 1, 3, 1);
+            return;
+        }
+
+        // columns
+        if (countLine(piece, get(1, 3), get(1, 2), get(1, 1)) == 2) {
+            placeOnEmpty(piece, 1, 3, 1, 2, 1, 1);
+            return;
+        }
+        if (countLine(piece, get(2, 3), get(2, 2), get(2, 1)) == 2) {
+            placeOnEmpty(piece, 2, 3, 2, 2, 2, 1);
+            return;
+        }
+        if (countLine(piece, get(3, 3), get(3, 2), get(3, 1)) == 2) {
+            placeOnEmpty(piece, 3, 3, 3, 2, 3, 1);
+            return;
+        }
+
+        // diagonals
+        if (countLine(piece, get(1, 3), get(2, 2), get(3, 1)) == 2) {
+            placeOnEmpty(piece, 1, 3, 2, 2, 3, 1);
+            return;
+        }
+        if (countLine(piece, get(1, 1), get(2, 2), get(3, 3)) == 2) {
+            placeOnEmpty(piece, 1, 1, 2, 2, 3, 3);
+            return;
+        }
+
+        // no combos available so play random
+        playEasy(piece);
     }
 
     public void outputBoard() {
-        System.out.println();
         System.out.println("---------");
         System.out.printf("| %c %c %c |\n", get(1, 3).getPiece(), get(2, 3).getPiece(), get(3, 3).getPiece());
         System.out.printf("| %c %c %c |\n", get(1, 2).getPiece(), get(2, 2).getPiece(), get(3, 2).getPiece());
@@ -135,7 +169,7 @@ public class Board {
         System.out.println("---------");
     }
 
-    //// following use board's raw format
+
     public GameState evaluateBoard() {
         boolean xWins = wins(Piece.X);
         boolean oWins = wins(Piece.O);
@@ -166,39 +200,42 @@ public class Board {
         return GameState.NOTFINISHED;
     }
 
+    /** count pieces in a line
+       A line is a row, column or diagonal  */
+    public int countLine(Piece piece, Piece piece1, Piece piece2, Piece piece3) {
+        int count = 0;
+        if (piece == piece1) {
+            count++;
+        }
+        if (piece == piece2) {
+            count++;
+        }
+        if (piece == piece3) {
+            count++;
+        }
+        return count;
+    }
+
+
     public boolean wins(Piece piece) {
         // rows
-        if (board[0][0] == piece && board[0][1] == piece && board[0][2] == piece) {
-            return true;
-        }
-        if (board[1][0] == piece && board[1][1] == piece && board[1][2] == piece) {
-            return true;
-        }
-        if (board[2][0] == piece && board[2][1] == piece && board[2][2] == piece) {
-            return true;
-        }
+        if (countLine(piece, get(1, 3), get(2, 3), get(3, 3)) == 3) { return true; }
+        if (countLine(piece, get(1, 2), get(2, 2), get(3, 2)) == 3) { return true; }
+        if (countLine(piece, get(1, 1), get(2, 1), get(3, 1)) == 3) { return true; }
 
         // columns
-        if (board[0][0] == piece && board[1][0] == piece && board[2][0] == piece) {
-            return true;
-        }
-        if (board[0][1] == piece && board[1][1] == piece && board[2][1] == piece) {
-            return true;
-        }
-        if (board[0][2] == piece && board[1][2] == piece && board[2][2] == piece) {
-            return true;
-        }
+        if (countLine(piece, get(1, 3), get(1, 2), get(1, 1)) == 3) { return true; }
+        if (countLine(piece, get(2, 3), get(2, 2), get(2, 1)) == 3) { return true; }
+        if (countLine(piece, get(3, 3), get(3, 2), get(3, 1)) == 3) { return true; }
 
         // diagonals
-        if (board[0][0] == piece && board[1][1] == piece && board[2][2] == piece) {
-            return true;
-        }
-        if (board[0][2] == piece && board[1][1] == piece && board[2][0] == piece) {
-            return true;
-        }
+        if (countLine(piece, get(1, 3), get(2, 2), get(3, 1)) == 3) { return true; }
+        if (countLine(piece, get(1, 1), get(2, 2), get(3, 3)) == 3) { return true; }
 
         return false;
     }
+
+    //// following use board's raw format
 
     public int countPiece(Piece piece) {
         int num = 0;
