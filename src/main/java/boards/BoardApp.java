@@ -42,12 +42,12 @@ public class BoardApp {
 
             // 'X' plays. (first)
             System.out.println("X plays"); //////
-            finished = makeMove(Piece.X, player1);
+            finished = makeMove(PieceType.X, player1);
 
             if (!finished) {
                 // 'O' playes
                 System.out.println("O plays"); ///////
-                finished = makeMove(Piece.O, player2);
+                finished = makeMove(PieceType.O, player2);
             }
         }
     }
@@ -72,7 +72,7 @@ public class BoardApp {
         }
     }
 
-    static boolean makeMove(Piece piece, PlayerType player) {
+    static boolean makeMove(PieceType piece, PlayerType player) {
         switch (player) {
             case USER:
                 playUser(piece);
@@ -93,7 +93,7 @@ public class BoardApp {
 
 
     // User moves
-    static void playUser(Piece piece) {
+    static void playUser(PieceType piece) {
         boolean move = false;
 
         while (!move) {
@@ -103,7 +103,7 @@ public class BoardApp {
         }
     }
 
-    static boolean legaUserXMove(Piece piece, String line) {
+    static boolean legaUserXMove(PieceType pieceType, String line) {
         if (!line.matches("\\d\\s\\d")) {
             System.out.println("You should enter numbers!");
             return false;
@@ -127,7 +127,7 @@ public class BoardApp {
             System.out.println("This cell is occupied! Choose another one!");
             return false;
         } else {
-            board.put(piece, col, row);
+            board.put(new Cell(pieceType), col, row);
             return true;
         }
     }

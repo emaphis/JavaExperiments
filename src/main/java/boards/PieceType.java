@@ -1,7 +1,7 @@
 package boards;
 
 
-public enum Piece {
+public enum PieceType {
     NONE(' '),
     X('X'),
     O('O'),
@@ -9,7 +9,7 @@ public enum Piece {
 
     private final char piece;
 
-    private Piece(char piece) {
+    private PieceType(char piece) {
         this.piece = piece;
     }
 
