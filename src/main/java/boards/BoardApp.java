@@ -24,17 +24,17 @@ public class BoardApp {
 //        String line = scan.nextLine();
 //        String[] parts = line.split(" ");
 
-        PlayerType player1 = getPlayer("medium");
-        PlayerType player2 = getPlayer("medium");
+        Player playerX = getPlayer(PieceType.X, "medium");
+        Player playerO = getPlayer(PieceType.O, "medium");
 
-        if (player1 != PlayerType.ERROR && player2 != PlayerType.ERROR) {
-            gameLoop(player1, player2);
+        if (playerX != null && playerO != null) {
+            gameLoop(playerX, playerO);
         } else {
             System.out.println("Bad players!");
         }
     }
 
-    private static void gameLoop(PlayerType player1, PlayerType player2) {
+    private static void gameLoop(Player playerX, Player playerO) {
         boolean finished = false;
 
         // start game loop.
@@ -42,12 +42,12 @@ public class BoardApp {
 
             // 'X' plays. (first)
             System.out.println("X plays"); //////
-            finished = makeMove(PieceType.X, player1);
+            finished = makeMove(playerX);
 
             if (!finished) {
                 // 'O' playes
                 System.out.println("O plays"); ///////
-                finished = makeMove(PieceType.O, player2);
+                finished = makeMove(playerO);
             }
         }
     }
@@ -59,78 +59,25 @@ public class BoardApp {
     }
 
     /** translate string to player */
-    static PlayerType getPlayer(String player) {
+    static Player getPlayer(PieceType pieceType, String player) {
         switch (player) {
             case "easy":
-                return PlayerType.EASY;
+                return new EasyPlayer(board, pieceType);
             case "medium":
-                return PlayerType.MEDIUM;
+                return new MediumPlayer(board, pieceType);
             case "user":
-                return PlayerType.USER;
+                return new UserPlayer(board, pieceType, scan);
             default:
-                return PlayerType.ERROR;  // Opps.
+                return null;  // Opps.
         }
     }
 
-    static boolean makeMove(PieceType piece, PlayerType player) {
-        switch (player) {
-            case USER:
-                playUser(piece);
-                break;
-            case EASY:
-                board.playEasy(piece);
-                break;
-            case MEDIUM:
-                board.playMedium(piece);
-                break;
-            case ERROR:
-            default:
-                break;
-        }
+    static boolean makeMove(Player player) {
+        player.play();
         board.outputBoard();
         return isFinished();
     }
 
-
-    // User moves
-    static void playUser(PieceType piece) {
-        boolean move = false;
-
-        while (!move) {
-            System.out.println("Enter the coordinates: ");
-            String line = scan.nextLine();
-            move = legaUserXMove(piece, line);
-        }
-    }
-
-    static boolean legaUserXMove(PieceType pieceType, String line) {
-        if (!line.matches("\\d\\s\\d")) {
-            System.out.println("You should enter numbers!");
-            return false;
-        }
-
-        String[] parts = line.split(" ");
-
-        int col = Integer.parseInt(parts[0]);
-        if (col > board.LEN || col < 1) {
-            System.out.println("Coordinates should be from 1 to 3!");
-            return false;
-        }
-
-        int row = Integer.parseInt(parts[1]);
-        if (row > board.LEN || row < 1) {
-            System.out.println("Coordinates should be from 1 to 3!");
-            return false;
-        }
-
-        if (!board.isEmpty(col, row)) {
-            System.out.println("This cell is occupied! Choose another one!");
-            return false;
-        } else {
-            board.put(new Cell(pieceType), col, row);
-            return true;
-        }
-    }
 
     /** interpret board state */
     static boolean isFinished() {

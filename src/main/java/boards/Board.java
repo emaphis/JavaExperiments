@@ -73,7 +73,7 @@ public class Board {
         return get(col, row).isEmpty();
     }
 
-    ////// Easy player.
+
     public int countEmpty() {
         int count = 0;
         for (int row = LEN; row > 0; row--) {
@@ -84,86 +84,6 @@ public class Board {
             }
         }
         return count;
-    }
-
-    public void playEasy(PieceType pieceType) {
-        int numEmpty = countEmpty();
-        int indx = rand.nextInt(numEmpty);
-        int count = 0;
-
-        // find the empty square to play, then play
-        for (int row = LEN; row > 0; row--) {
-            for (int col = 1; col <= LEN; col++) {
-                if (isEmpty(col, row)) {
-                    if (count == indx) {
-                        put(new Cell(pieceType), col, row);
-                        return;
-                    }
-                    count++;
-                }
-            }
-        }
-    }
-
-
-    /// Medium player
-
-    private void placeOnEmpty(PieceType pieceType, int col1, int row1, int col2, int row2, int col3, int row3) {
-        if (get(col1, row1).isEmpty()) {
-            put(new Cell(pieceType), col1, row1);
-            return;
-        }
-        if (get(col2, row2).isEmpty()) {
-            put(new Cell(pieceType), col2, row2);
-            return;
-        }
-        if (get(col3, row3).isEmpty()) {
-            put(new Cell(pieceType), col3, row3);
-            return;
-        }
-    }
-
-    public void playMedium(PieceType pieceType) {
-        // rows
-        if (countLine(pieceType, get(1, 3), get(2, 3), get(3, 3)) == 2) {
-            placeOnEmpty(pieceType, 1, 3, 2, 3, 3, 3);
-            return;
-        }
-        if (countLine(pieceType, get(1, 2), get(2, 2), get(3, 2)) == 2) {
-            placeOnEmpty(pieceType, 1, 2, 2, 2, 3, 2);
-            return;
-        }
-        if (countLine(pieceType, get(1, 1), get(2, 1), get(3, 1)) == 2) {
-            placeOnEmpty(pieceType, 1, 1, 2, 1, 3, 1);
-            return;
-        }
-
-        // columns
-        if (countLine(pieceType, get(1, 3), get(1, 2), get(1, 1)) == 2) {
-            placeOnEmpty(pieceType, 1, 3, 1, 2, 1, 1);
-            return;
-        }
-        if (countLine(pieceType, get(2, 3), get(2, 2), get(2, 1)) == 2) {
-            placeOnEmpty(pieceType, 2, 3, 2, 2, 2, 1);
-            return;
-        }
-        if (countLine(pieceType, get(3, 3), get(3, 2), get(3, 1)) == 2) {
-            placeOnEmpty(pieceType, 3, 3, 3, 2, 3, 1);
-            return;
-        }
-
-        // diagonals
-        if (countLine(pieceType, get(1, 3), get(2, 2), get(3, 1)) == 2) {
-            placeOnEmpty(pieceType, 1, 3, 2, 2, 3, 1);
-            return;
-        }
-        if (countLine(pieceType, get(1, 1), get(2, 2), get(3, 3)) == 2) {
-            placeOnEmpty(pieceType, 1, 1, 2, 2, 3, 3);
-            return;
-        }
-
-        // no combos available so play random
-        playEasy(pieceType);
     }
 
     public void outputBoard() {
