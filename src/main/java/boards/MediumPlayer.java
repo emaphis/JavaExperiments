@@ -32,12 +32,12 @@ public class MediumPlayer extends EasyPlayer {
     }
 
     private boolean checkTwo(PieceType piece, int col1, int row1, int col2, int row2, int col3, int row3) {
-        if (board.get(col1, row1).isType(piece) && board.get(col2, row2).isType(piece) &&  board.get(col3, row3).isEmpty() ) {
+        if (board.get(col1, row1).isType(piece) && board.get(col2, row2).isType(piece) &&  board.get(col3, row3).isEmpty()) {
             board.put(new Cell(piece), col3, row3);
             return true;
         }
 
-        if (board.get(col1, row1).isType(piece) && board.get(col2, row2).isEmpty() &&  board.get(col3, row3).isEmpty() ) {
+        if (board.get(col1, row1).isType(piece) && board.get(col2, row2).isEmpty() &&  board.get(col3, row3).isType(piece)) {
             board.put(new Cell(piece), col2, row2);
             return true;
         }
