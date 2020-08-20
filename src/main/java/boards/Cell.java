@@ -10,24 +10,24 @@ package boards;
  * @author emaphis
  */
 public class Cell {
-    private final PieceType pieceType;
+    private final PieceType piece;
     private int score;
 
-    public Cell(PieceType pieceType) {
-        this.pieceType = pieceType;
+    public Cell(PieceType piece) {
+        this.piece = piece;
         this.score = 0;
     }
 
-    public char getPiece() {
-        return pieceType.getPiece();
+    public char getGlyph() {
+        return piece.getGlyph();
     }
 
     public boolean isEmpty() {
-        return pieceType == PieceType.NONE || pieceType == PieceType.ERROR;
+        return piece == PieceType.NONE;
     }
 
     public boolean isType(PieceType type) {
-        return pieceType == type;
+        return this.piece == type;
     }
 
     public void setScore(int score) {

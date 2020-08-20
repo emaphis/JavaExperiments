@@ -7,13 +7,13 @@ public enum PieceType {
     O('O'),
     ERROR('E');
 
-    private final char piece;
+    private final char glyph;
 
-    private PieceType(char piece) {
-        this.piece = piece;
+    private PieceType(char glyph) {
+        this.glyph = glyph;
     }
 
-    public char getPiece() {
-        return piece;
+    public char getGlyph() {
+        return glyph;
     }
 }

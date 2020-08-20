@@ -40,8 +40,8 @@ public class Board {
         for (int row = LEN; row > 0; row--) {
             for (int col = 1; col <= LEN; col++) {
                 char pieceName = pieces[count];
-                PieceType type = getType(pieceName);
-                put(new Cell(type), col, row);
+                PieceType piece = getType(pieceName);
+                put(new Cell(piece), col, row);
                 count++;
             }
         }
@@ -88,9 +88,9 @@ public class Board {
 
     public void outputBoard() {
         System.out.println("---------");
-        System.out.printf("| %c %c %c |\n", get(1, 3).getPiece(), get(2, 3).getPiece(), get(3, 3).getPiece());
-        System.out.printf("| %c %c %c |\n", get(1, 2).getPiece(), get(2, 2).getPiece(), get(3, 2).getPiece());
-        System.out.printf("| %c %c %c |\n", get(1, 1).getPiece(), get(2, 1).getPiece(), get(3, 1).getPiece());
+        System.out.printf("| %c %c %c |\n", get(1, 3).getGlyph(), get(2, 3).getGlyph(), get(3, 3).getGlyph());
+        System.out.printf("| %c %c %c |\n", get(1, 2).getGlyph(), get(2, 2).getGlyph(), get(3, 2).getGlyph());
+        System.out.printf("| %c %c %c |\n", get(1, 1).getGlyph(), get(2, 1).getGlyph(), get(3, 1).getGlyph());
         System.out.println("---------");
     }
 
@@ -162,11 +162,11 @@ public class Board {
 
     //// following use board's raw format
 
-    public int countPiece(PieceType pieceType) {
+    public int countPiece(PieceType piece) {
         int count = 0;
         for (int i = 0; i < LEN; i++) {
             for (int j = 0; j < LEN; j++) {
-                if (board[i][j].isType(pieceType)) {
+                if (board[i][j].isType(piece)) {
                     count++;
                 }
             }

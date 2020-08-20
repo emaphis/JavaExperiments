@@ -17,17 +17,13 @@ public class BoardApp {
         System.out.println("aaa");
         //char[] pieces = getPieceString();
         //board = new Board(pieces);
+
         board = new Board();
-        board.outputBoard();
-
-//        System.out.println("Get two players");
-//        String line = scan.nextLine();
-//        String[] parts = line.split(" ");
-
-        Player playerX = getPlayer(PieceType.X, "medium");
-        Player playerO = getPlayer(PieceType.O, "medium");
+        Player playerX = getPlayer(board, PieceType.X, "medium");
+        Player playerO = getPlayer(board, PieceType.O, "medium");
 
         if (playerX != null && playerO != null) {
+            board.outputBoard();
             gameLoop(playerX, playerO);
         } else {
             System.out.println("Bad players!");
@@ -59,14 +55,14 @@ public class BoardApp {
     }
 
     /** translate string to player */
-    static Player getPlayer(PieceType pieceType, String player) {
+    static Player getPlayer(Board board, PieceType piece, String player) {
         switch (player) {
             case "easy":
-                return new EasyPlayer(board, pieceType);
+                return new EasyPlayer(board, piece);
             case "medium":
-                return new MediumPlayer(board, pieceType);
+                return new MediumPlayer(board, piece);
             case "user":
-                return new UserPlayer(board, pieceType, scan);
+                return new UserPlayer(board, piece, scan);
             default:
                 return null;  // Opps.
         }

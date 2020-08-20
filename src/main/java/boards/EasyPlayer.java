@@ -2,6 +2,7 @@
 package boards;
 
 import java.util.Random;
+import static boards.Board.LEN;
 
 /**
  *
@@ -10,8 +11,8 @@ import java.util.Random;
 public class EasyPlayer extends Player {
     Random rand;
 
-    public EasyPlayer(Board board, PieceType pieceType) {
-        super(board, pieceType);
+    public EasyPlayer(Board board, PieceType piece) {
+        super(board, piece);
         rand = new Random();
     }
 
@@ -22,11 +23,11 @@ public class EasyPlayer extends Player {
         int count = 0;
 
         // find the empty square to play, then play
-        for (int row = board.LEN; row > 0; row--) {
-            for (int col = 1; col <= board.LEN; col++) {
+        for (int row = LEN; row > 0; row--) {
+            for (int col = 1; col <= LEN; col++) {
                 if (board.isEmpty(col, row)) {
                     if (count == indx) {
-                        board.put(new Cell(super.getPieceType()), col, row);
+                        board.put(new Cell(piece), col, row);
                         return;
                     }
                     count++;

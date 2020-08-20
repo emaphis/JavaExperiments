@@ -2,6 +2,7 @@
 package boards;
 
 import java.util.Scanner;
+import static boards.Board.LEN;
 
 /**
  *
@@ -10,8 +11,8 @@ import java.util.Scanner;
 public class UserPlayer extends Player {
     Scanner scan;
 
-    public UserPlayer(Board board, PieceType pieceType, Scanner scan) {
-        super(board, pieceType);
+    public UserPlayer(Board board, PieceType piece, Scanner scan) {
+        super(board, piece);
         this.scan = scan;
     }
 
@@ -37,13 +38,13 @@ public class UserPlayer extends Player {
         String[] parts = line.split(" ");
 
         int col = Integer.parseInt(parts[0]);
-        if (col > board.LEN || col < 1) {
+        if (col > LEN || col < 1) {
             System.out.println("Coordinates should be from 1 to 3!");
             return false;
         }
 
         int row = Integer.parseInt(parts[1]);
-        if (row > board.LEN || row < 1) {
+        if (row > LEN || row < 1) {
             System.out.println("Coordinates should be from 1 to 3!");
             return false;
         }
@@ -52,7 +53,7 @@ public class UserPlayer extends Player {
             System.out.println("This cell is occupied! Choose another one!");
             return false;
         } else {
-            board.put(new Cell(getPieceType()), col, row);
+            board.put(new Cell(piece), col, row);
             return true;
         }
     }

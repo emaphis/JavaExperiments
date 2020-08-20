@@ -6,16 +6,12 @@ package boards;
  * @author emaphis
  */
 public abstract class Player {
-    private PieceType pieceType;
+    protected PieceType piece;
     protected Board board;
 
-    public Player(Board board, PieceType pieceType) {
+    public Player(Board board, PieceType piece) {
         this.board = board;
-        this.pieceType = pieceType;
-    }
-
-    public PieceType getPieceType() {
-        return pieceType;
+        this.piece = piece;
     }
 
     public abstract void play();
