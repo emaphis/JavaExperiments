@@ -10,7 +10,7 @@ import javax.swing.JFrame;
  * This program demonstrates how to install an action listener.
  * @author emaphis
  */
-public class ButtonViewer {
+public class ButtonViewer2 {
     private static final int FRAME_WIDTH = 100;
     private static final int FRAME_HEIGHT = 60;
 
@@ -19,8 +19,7 @@ public class ButtonViewer {
         JButton button = new JButton("Chick Me!");
         frame.add(button);
 
-        ActionListener listener = new ClickListener();
-        button.addActionListener(listener);
+        button.addActionListener(ev -> System.out.println("I was clicked."));
 
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
