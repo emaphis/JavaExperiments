@@ -1,14 +1,13 @@
-
 package gui.awt;
 
 import java.awt.Button;
 import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -18,78 +17,78 @@ import java.awt.event.WindowEvent;
  *
  * @author emaphis
  */
-public class TempVerter extends Frame {
+public class TempVerter {
 
-    public TempVerter() throws HeadlessException {
-        super("TempVerter");
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent ev) {
-                System.out.println("window closing");
-                dispose();
-            }
-
-            @Override
-            public void windowClosed(WindowEvent we) {
-                System.out.println("window closed");
-            }
-        });
-
+    static Panel createGUI() {
         Panel pnlLayout = new Panel();
-        pnlLayout.setLayout(new GridLayout(3, 2));
-        pnlLayout.add(new Label("Degrees"));
+        pnlLayout.setLayout(new GridLayout(3, 1));
+        
+        Panel pnlTemp = new Panel();
+        pnlTemp.add(new Label("Degrees"));
         final TextField txtDegrees = new TextField(10);
-        pnlLayout.add(txtDegrees);
-        pnlLayout.add(new Label("Result"));
+        pnlTemp.add(txtDegrees);
+        pnlLayout.add(pnlTemp);
+        pnlTemp = new Panel();
+        pnlTemp.add(new Label("Result"));
         final TextField txtResult = new TextField(30);
-        pnlLayout.add(txtResult);
-        ActionListener al = new ActionListener() {
+        pnlTemp.add(txtResult);
+        pnlLayout.add(pnlTemp);
+        
+        pnlTemp = new Panel();
+        ActionListener al;
+        al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
                     double value = Double.parseDouble(txtDegrees.getText());
                     double result = (value - 32.0) * 5.0 / 9.0;
-                    txtResult.setText("Celsius " + result);
-                } catch (NumberFormatException ex) {
+                    txtResult.setText("Celsius = " + result);
+                } catch (NumberFormatException nfe) {
                     System.err.println("bad input");
                 }
             }
         };
-
-        Button btnConvertToCelsius = new Button("Covert to Celsius");
+        Button btnConvertToCelsius = new Button("Convert to Celsius");
         btnConvertToCelsius.addActionListener(al);
-        pnlLayout.add(btnConvertToCelsius);
+        pnlTemp.add(btnConvertToCelsius);
+        
         al = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent ae) {
                 try {
                     double value = Double.parseDouble(txtDegrees.getText());
                     double result = value * 9.0 / 5.0 + 32.0;
-                    txtResult.setText("Fahreheit " + result);
-                } catch (NumberFormatException ex) {
+                    txtResult.setText("Fahrenheit = " + result);
+                } catch (NumberFormatException nfe) {
                     System.err.println("bad input");
                 }
             }
         };
         Button btnConvertToFahrenheit = new Button("Convert to Fahrenheit");
         btnConvertToFahrenheit.addActionListener(al);
-        pnlLayout.add(btnConvertToFahrenheit);
+        pnlTemp.add(btnConvertToFahrenheit);
+        pnlLayout.add(pnlTemp);
 
-        add(pnlLayout);
-        pack();
-        setResizable(false);
-
-        setVisible(true);
+        return pnlLayout;
     }
 
     public static void main(String[] args) {
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                new TempVerter();
+                final Frame f = new Frame("TempVerter");
+                f.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        f.dispose();
+                    }
+                });
+                f.add(createGUI());
+                f.pack();
+                f.setResizable(false);
+                f.setVisible(true);
             }
         };
         EventQueue.invokeLater(r);
     }
-
 }
