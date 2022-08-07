@@ -18,9 +18,11 @@ public class E_FunWithRange {
                     throw new IllegalArgumentException("begin should be less than end");
             }
 
-            public Range () {
-                this(0, 0);
+
+            Range(int end) {
+                this(0, end);
             }
+
 
             @Override
             public Iterator<Integer> iterator() {
@@ -40,8 +42,10 @@ public class E_FunWithRange {
 
         }
 
-        var range = new Range(0, 5);
+        var range = new Range(5);  // Range(0, 5)
 
+        System.out.println("range begin = " + range.begin);
+        System.out.println("range end = " + range.end);
         System.out.println("range = " + range);
 
         for (Integer index : range) {

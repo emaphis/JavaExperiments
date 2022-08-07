@@ -13,12 +13,15 @@ import org.maphis.devoxx.model.Circle;
 public class I_SealedTypes {
 
     public static void main(String[] args) {
-
+        var shape = new Square(4);
+        int area = surface(shape);
+        System.out.println("area = " + area);
     }
 
-    public int surface(Shape shape) {
+    public static int surface(Shape shape) {
 
         int surface = switch (shape) {
+            case null -> 0;
             case Square square ->
                 square.edge() * square.edge();
             case Rectangle rectangle ->
