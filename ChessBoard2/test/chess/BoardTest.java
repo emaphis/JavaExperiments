@@ -10,15 +10,18 @@ import junit.framework.TestCase;
  * @author emaph
  */
 public class BoardTest extends TestCase {
+    private Board board;
+
+    @Override
+    protected void setUp() {
+        board = new Board();
+    }
 
     public void testCreateBoard() {
-        Board board = new Board();
         assertEquals(0, board.getNumberPieces());
     }
 
     public void testAddPiece() {
-        Board board = new Board();
-
         Pawn pawn1 = new Pawn();  // white
         board.addPiece(pawn1);
         assertEquals(1, board.getNumberPieces());
