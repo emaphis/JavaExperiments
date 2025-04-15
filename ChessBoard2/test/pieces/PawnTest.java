@@ -1,4 +1,7 @@
+package pieces;
 
+
+import pieces.Pawn;
 import junit.framework.TestCase;
 
 /**

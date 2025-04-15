@@ -1,4 +1,7 @@
+package chess;
 
+
+import pieces.Pawn;
 import java.util.ArrayList;
 
 
@@ -7,7 +10,7 @@ import java.util.ArrayList;
  * @author emaph
  */
 class Board {
-    private ArrayList<Pawn> pieces = new ArrayList<Pawn>();
+    private final ArrayList<Pawn> pieces = new ArrayList<Pawn>();
 
     /**
      * Add passed Pawn to Board.
