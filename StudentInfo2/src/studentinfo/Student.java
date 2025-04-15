@@ -1,3 +1,5 @@
+package studentinfo;
+
 
 /**
  * Represents an individual Student in the system.
