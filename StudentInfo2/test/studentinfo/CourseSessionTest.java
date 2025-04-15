@@ -1,6 +1,6 @@
 package studentinfo;
 
-import java.util.ArrayList;
+import java.util.Date;
 import junit.framework.TestCase;
 
 /**
@@ -9,10 +9,15 @@ import junit.framework.TestCase;
  */
 public class CourseSessionTest extends TestCase {
     private CourseSession session;
+    private Date startDate;
 
     @Override
     protected void setUp() {
-        session = new CourseSession("ENGL", "101");
+        int year = 103;
+        int month = 0;
+        int date = 6;
+        startDate = new Date(year, month, date);
+        session = new CourseSession("ENGL", "101", startDate);
     }
 
 
@@ -20,6 +25,7 @@ public class CourseSessionTest extends TestCase {
         assertEquals("ENGL", session.getDepartment());
         assertEquals("101", session.getNumber());
         assertEquals(0, session.getNumberOfStudents());
+        assertEquals(startDate, session.getStartDate());
     }
 
     public void testEnrollStudents() {
@@ -33,5 +39,13 @@ public class CourseSessionTest extends TestCase {
         assertEquals(2, session.getNumberOfStudents());
         assertEquals(student1, session.get(0));
         assertEquals(student2, session.get(1));
+    }
+
+    public void testCourseDates() {
+        int year = 103;
+        int month = 3;
+        int date = 25;
+        Date sixteenWeeksOut = new Date(year, month, date);
+        assertEquals(sixteenWeeksOut, session.getEndDate());
     }
 }
