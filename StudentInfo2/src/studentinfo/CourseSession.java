@@ -3,13 +3,14 @@ package studentinfo;
 import java.util.ArrayList;
 import java.util.*;
 
-
 /**
- * Provides a representation of a single semester
- * session of a specific university course.
+ * Provides a representation of a single semester session of a specific
+ * university course.
+ *
  * @author emaph
  */
 class CourseSession {
+
     private final String department;
     private final String number;
     private final ArrayList<Student> students = new ArrayList<Student>();
@@ -37,6 +38,7 @@ class CourseSession {
 
     /**
      * Return the session number
+     *
      * @return the session number
      */
     String getNumber() {
@@ -45,6 +47,7 @@ class CourseSession {
 
     /**
      * Return the number of Students enrolled in the session
+     *
      * @return the number of students
      */
     int getNumberOfStudents() {
@@ -53,6 +56,7 @@ class CourseSession {
 
     /**
      * Enroll the Student in the session
+     *
      * @param student
      */
     void enroll(Student student) {
@@ -61,6 +65,7 @@ class CourseSession {
 
     /**
      * Return the Student given an index
+     *
      * @param index of the Student
      * @return the Student
      */
@@ -77,6 +82,7 @@ class CourseSession {
 
     /**
      * Course end date is 16 weeks after start date
+     *
      * @return course end date
      */
     Date getEndDate() {
@@ -85,6 +91,32 @@ class CourseSession {
         int numberOfDays = 16 * 7 - 3;  // weeks * days per week - 3 days
         calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
         return calendar.getTime();
+    }
+
+    static final String NEWLINE =  System.getProperty("line.separator");
+
+    static String ROSTER_REPORT_HEADER =
+             "Student" + NEWLINE +
+            "———-" + NEWLINE;
+
+    static String ROSTER_REPORT_FOOTER = NEWLINE + "# students = ";
+
+    String getRosterReport() {
+        StringBuilder buffer = new StringBuilder();
+
+        buffer.append(ROSTER_REPORT_HEADER);
+
+        Student student = students.get(0);
+        buffer.append(student.getName());
+        buffer.append(NEWLINE);
+
+        student = students.get(1);
+        buffer.append(student.getName());
+        buffer.append(NEWLINE);
+
+        buffer.append(ROSTER_REPORT_FOOTER + students.size() + NEWLINE);
+
+        return buffer.toString();
     }
 
 }
