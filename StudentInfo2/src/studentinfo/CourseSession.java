@@ -93,27 +93,11 @@ class CourseSession {
         return calendar.getTime();
     }
 
-    static final String NEWLINE =  System.getProperty("line.separator");
-
-    static String ROSTER_REPORT_HEADER =
-             "Student" + NEWLINE +
-            "———-" + NEWLINE;
-
-    static String ROSTER_REPORT_FOOTER = NEWLINE + "# students = ";
-
-    String getRosterReport() {
-        StringBuilder buffer = new StringBuilder();
-
-        buffer.append(ROSTER_REPORT_HEADER);
-
-        for (Student student : students) {
-            buffer.append(student.getName());
-            buffer.append(NEWLINE);
-        }
-
-        buffer.append(ROSTER_REPORT_FOOTER + students.size() + NEWLINE);
-
-        return buffer.toString();
+    /**
+     * @return list of Students
+     */
+    ArrayList<Student> getAllStudents() {
+        return students;
     }
 
 }
