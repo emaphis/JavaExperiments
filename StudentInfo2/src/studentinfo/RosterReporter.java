@@ -1,8 +1,5 @@
-
-
 package studentinfo;
 
-import studentinfo.CourseSession;
 
 /**
  *
