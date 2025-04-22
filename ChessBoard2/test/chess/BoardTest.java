@@ -27,7 +27,7 @@ public class BoardTest extends TestCase {
         assertEquals(1, board.getNumberPieces());
         assertEquals(Pawn.WHITE, board.getPiece(0).getColor());
 
-        Pawn pawn2 = new Pawn(Pawn.BLACK);
+        Pawn pawn2 = new Pawn(Pawn.BLACK, 'P');
         board.addPiece(pawn2);
         assertEquals(2, board.getNumberPieces());
         assertEquals(Pawn.BLACK, board.getPiece(1).getColor());

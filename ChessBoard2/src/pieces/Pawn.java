@@ -11,13 +11,15 @@ public class Pawn {
     public static final String BLACK = "black";
 
     private final String color;
+    private final char representation;
 
     /**
      * Create a Pawn of a given color.
      * @param color
      */
-    public Pawn(String color) {
+    public Pawn(String color, char representation) {
         this.color = color;
+        this.representation = representation;
     }
 
     /**
@@ -25,6 +27,7 @@ public class Pawn {
      */
     public Pawn() {
         this.color = Pawn.WHITE;
+        this.representation = 'p';
     }
 
     /**
@@ -32,6 +35,13 @@ public class Pawn {
      */
     public String getColor() {
         return color;
+    }
+
+    /**
+     * @return Pieces representation
+     */
+    public char getRepresentation() {
+        return representation;
     }
 
 }
