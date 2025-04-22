@@ -17,4 +17,14 @@ public class CharacterTest extends TestCase {
         assertEquals(true, Character.isWhitespace('\r'));
     }
 
+    public void testIdentifierPart() {
+        assertEquals(true, Character.isJavaIdentifierPart('a'));
+        assertEquals(true, Character.isJavaIdentifierPart('A'));
+        assertEquals(true, Character.isJavaIdentifierPart('$'));
+        assertEquals(true, Character.isJavaIdentifierPart('1'));
+        assertEquals(true, Character.isJavaIdentifierPart('_'));
+
+        assertEquals(false, Character.isJavaIdentifierPart('@'));
+    }
+
 }
