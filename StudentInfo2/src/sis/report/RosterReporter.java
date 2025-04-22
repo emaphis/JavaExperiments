@@ -8,7 +8,7 @@ import sis.studentinfo.Student;
  *
  * @author emaph
  */
-class RosterReporter {
+public class RosterReporter {
     static final String NEWLINE =  System.getProperty("line.separator");
 
     static final String ROSTER_REPORT_HEADER =
@@ -24,7 +24,7 @@ class RosterReporter {
     }
 
 
-    String getReport() {
+    public String getReport() {
         StringBuilder buffer = new StringBuilder();
         writeHeader(buffer);
         writeBody(buffer);
