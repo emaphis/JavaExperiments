@@ -1,4 +1,7 @@
-package studentinfo;
+package sis.report;
+
+import sis.studentinfo.CourseSession;
+import sis.studentinfo.Student;
 
 
 /**
@@ -42,7 +45,7 @@ class RosterReporter {
     }
 
     void writeFooter(StringBuilder buffer) {
-         buffer.append(ROSTER_REPORT_FOOTER); // + session.getAllStudents().size() + NEWLINE);
+         buffer.append(ROSTER_REPORT_FOOTER);
          buffer.append(session.getAllStudents().size());
          buffer.append(NEWLINE);
     }

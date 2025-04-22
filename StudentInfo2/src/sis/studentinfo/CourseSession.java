@@ -1,4 +1,4 @@
-package studentinfo;
+package sis.studentinfo;
 
 import java.util.ArrayList;
 import java.util.*;
@@ -9,7 +9,7 @@ import java.util.*;
  *
  * @author emaph
  */
-class CourseSession {
+public class CourseSession {
 
     private final String department;
     private final String number;
@@ -23,7 +23,7 @@ class CourseSession {
      * @param number the session number
      * @param startDate the date on which the CourseSession begins.
      */
-    CourseSession(String department, String number, Date startDate) {
+    public CourseSession(String department, String number, Date startDate) {
         this.department = department;
         this.number = number;
         this.startDate = startDate;
@@ -32,7 +32,7 @@ class CourseSession {
     /**
      * @return the department code
      */
-    String getDepartment() {
+    public String getDepartment() {
         return department;
     }
 
@@ -41,7 +41,7 @@ class CourseSession {
      *
      * @return the session number
      */
-    String getNumber() {
+    public String getNumber() {
         return number;
     }
 
@@ -50,7 +50,7 @@ class CourseSession {
      *
      * @return the number of students
      */
-    int getNumberOfStudents() {
+    public int getNumberOfStudents() {
         return students.size();
     }
 
@@ -59,7 +59,7 @@ class CourseSession {
      *
      * @param student
      */
-    void enroll(Student student) {
+    public void enroll(Student student) {
         students.add(student);
     }
 
@@ -96,7 +96,7 @@ class CourseSession {
     /**
      * @return list of Students
      */
-    ArrayList<Student> getAllStudents() {
+    public ArrayList<Student> getAllStudents() {
         return students;
     }
 

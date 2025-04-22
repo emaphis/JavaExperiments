@@ -1,5 +1,8 @@
-package studentinfo;
+package sis.studentinfo;
 
+import sis.studentinfo.Student;
+import sis.studentinfo.DateUtil;
+import sis.studentinfo.CourseSession;
 import java.util.*;
 import junit.framework.TestCase;
 

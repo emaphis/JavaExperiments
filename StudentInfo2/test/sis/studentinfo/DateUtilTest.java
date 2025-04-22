@@ -1,6 +1,7 @@
 
-package studentinfo;
+package sis.studentinfo;
 
+import sis.studentinfo.DateUtil;
 import java.util.*;
 import junit.framework.*;
 

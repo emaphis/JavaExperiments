@@ -1,4 +1,4 @@
-package studentinfo;
+package sis.studentinfo;
 
 import java.util.*;
 
@@ -6,8 +6,8 @@ import java.util.*;
  *
  * @author emaph
  */
-class DateUtil {
-    Date createDate(int year, int month, int date) {
+public class DateUtil {
+    public Date createDate(int year, int month, int date) {
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.clear();
         calendar.set(Calendar.YEAR, year);

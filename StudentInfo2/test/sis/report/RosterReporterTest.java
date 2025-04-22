@@ -1,6 +1,10 @@
-package studentinfo;
+package sis.report;
+
 
 import junit.framework.TestCase;
+import sis.studentinfo.CourseSession;
+import sis.studentinfo.DateUtil;
+import sis.studentinfo.Student;
 
 /**
  * Roster Report

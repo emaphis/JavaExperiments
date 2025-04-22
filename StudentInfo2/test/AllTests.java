@@ -1,8 +1,8 @@
 
-import studentinfo.StudentTest;
-import studentinfo.CourseSessionTest;
-import studentinfo.RosterReporterTest;
-import studentinfo.DateUtilTest;
+import sis.studentinfo.StudentTest;
+import sis.studentinfo.CourseSessionTest;
+import sis.report.RosterReporterTest;
+import sis.studentinfo.DateUtilTest;
 import junit.framework.TestSuite;
 
 /**
