@@ -1,3 +1,5 @@
+package studentinfo;
+
 /*
  * Student test.
  */

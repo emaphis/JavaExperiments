@@ -1,3 +1,4 @@
+package studentinfo;
 
 import java.util.ArrayList;
 

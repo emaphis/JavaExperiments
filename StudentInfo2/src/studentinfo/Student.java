@@ -1,3 +1,5 @@
+package studentinfo;
+
 /**
  * Class representing a Student in the application
  * @author emaph
