@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class CourseSession {
     private String deparment;
     private String number;
-    ArrayList<Student> students;
+    private ArrayList<Student> students;
             
     public CourseSession(String department, String number) {
         this.deparment = department;
@@ -30,8 +30,8 @@ public class CourseSession {
         students.add(student);
     }
     
-    ArrayList<Student> getAllStudents(){
-        return students;
+    Student get(int idx) {
+        return students.get(idx);
     }
 
     int getNumberOfStudents() {
