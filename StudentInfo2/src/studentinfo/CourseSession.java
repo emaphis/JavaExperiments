@@ -4,7 +4,8 @@ import java.util.*;
 
 
 /**
- * Represents a Course Session in the application
+ * Provides a represent of a single-semester
+ * session of a specific university course
  * @author emaph
  */
 public class CourseSession {
@@ -19,6 +20,13 @@ public class CourseSession {
         this.students = new ArrayList<Student>();
     }
 
+    /**
+     * Constructs a CourseSession starting on specific date
+     *
+     * @param department Department number for the Course
+     * @param number Course number
+     * @param startDate  the date on which the CourseSession begins
+     */
     public CourseSession(String department, String number, Date startDate) {
         this.deparment = department;
         this.number = number;
@@ -26,26 +34,47 @@ public class CourseSession {
         this.startDate = startDate;
     }
 
+    /**
+     * @return Department number
+     */
     String getDepartment() {
         return deparment;
     }
     
+    /**
+     * @return Course number.
+     */
     String getNumber() {
         return number;
     }
     
+    /**
+     * Enroll the given Student
+     * @param student to enroll.
+     */
     void enroll(Student student) {
         students.add(student);
     }
     
+    /**
+     * Rturn STudent at a given index.
+     * @param idx of Student
+     * @return Student and index.
+     */
     Student get(int idx) {
         return students.get(idx);
     }
 
+    /**
+     * @return number of enrolled Students
+     */
     int getNumberOfStudents() {
         return students.size();
     }
 
+    /**
+     * @return Date the last date of the course session
+     */
     Date getEndDate() {
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.setTime(startDate);
