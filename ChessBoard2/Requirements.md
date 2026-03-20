@@ -10,3 +10,6 @@ Create a constructor that takes a Pawn color as a string
 
 Refactor: Eliminate the default constructor - require that clients creating Pawn objects pass in the color.
 
+## Lesson 2
+
+create a default Pawn constructior that creates a blank Pawn
