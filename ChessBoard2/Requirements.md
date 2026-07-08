@@ -12,4 +12,8 @@ Refactor: Eliminate the default constructor - require that clients creating Pawn
 
 ## Lesson 2
 
-create a default Pawn constructior that creates a blank Pawn
+create a default Pawn constructor that creates a blank Pawn
+
+Create a ChessBoard and a test.
+
+Create a test that shows zero pawns on the board
