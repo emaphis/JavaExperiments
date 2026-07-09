@@ -16,4 +16,15 @@ Add an assertion testing Student.getName().
 
 Add studentName field
 
+## Lesson 2
+
+Use: int, ArrayList<>, default constructors, TestSuite, packages, import, date, calendar, comments
+
+Create  CourseSessionTest unit test.
+
+CourseSession class with department and number String fields.
+
+Add ArrayList<Students> to hold enrolled Students.
+
+Create TestSuite to hold CousesSessionTest and StudentTest test suites.
 
