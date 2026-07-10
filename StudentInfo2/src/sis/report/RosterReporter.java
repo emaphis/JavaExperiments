@@ -1,9 +1,7 @@
 
 package sis.report;
 
-import java.util.ArrayList;
-import studentinfo.CourseSession;
-import studentinfo.Student;
+import sis.studentinfo.*;
 
 /**
  *

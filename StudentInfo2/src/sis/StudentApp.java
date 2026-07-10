@@ -1,6 +1,6 @@
 
 
-package app;
+package sis;
 
 /**
  * This Student Application

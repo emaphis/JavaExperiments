@@ -2,9 +2,11 @@
 
 package sis.report;
 
+import sis.studentinfo.Student;
+import sis.studentinfo.CourseSession;
 import junit.framework.TestCase;
 import utility.DateUtil;
-import studentinfo.*;
+
 
 /**
  *
