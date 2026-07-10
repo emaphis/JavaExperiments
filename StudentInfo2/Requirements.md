@@ -30,4 +30,16 @@ Create TestSuite to hold CousesSessionTest and StudentTest test suites.
 
 Refactor CousrseSessionTest, move session and session2 to global variables.
 
-Add startDate to CourseSession, calculate 
+Add startDate to CourseSession, calculate
+
+## Lesson 3 - Strings
+
+Strings, chars, StringBuilder, iterating through collections, packages, public private
+
+Characters and Strings
+
+Create StringsTest unit test class, place in in a utility package
+
+Create and test a RosterReort for CourseSession.
+
+Refactor: Put RosterReport in it's own class and it's test in it's own unit test.

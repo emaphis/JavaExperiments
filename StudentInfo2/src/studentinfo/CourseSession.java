@@ -29,26 +29,26 @@ public class CourseSession {
     /**
      * @return the Department
      */
-    String getDepartment() {
+    public String getDepartment() {
         return department;
     }
 
     /**
      * @return the Session number
      */
-    String getNumber() {
+    public String getNumber() {
         return number;
     }
 
     /**
      * @return Number of Students enrolled in the course session
      */
-    int getNumberOfStudents() {
+    public int getNumberOfStudents() {
         return students.size();
     }
 
     /**
-     * @return the start date of the course session. 
+     * @return the start date of the course session.
      */
     public Date getStartDate() {
         return startDate;
@@ -58,7 +58,7 @@ public class CourseSession {
      * Enroll the Student in the course session
      * @param student to enroll
      */
-    void enroll(Student student) {
+    public void enroll(Student student) {
         students.add(student);
     }
 
@@ -66,14 +66,23 @@ public class CourseSession {
      * @param index of Student starting at 0
      * @return the Student at the index.
      */
-    Student get(int index) {
+    public Student get(int index) {
         return students.get(index);
+    }
+
+    /**
+     * Return the list of Students.
+     *
+     * @return List of Students
+     */
+    public ArrayList<Student> getAllStudents() {
+        return students;
     }
 
     /**
      * @return Date the last date of course session
      */
-    Date getEndDate() {
+    public Date getEndDate() {
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.setTime(startDate);
         int numberOfDays = 16 * 7 - 3;  // weeks * days per week - 3 days
