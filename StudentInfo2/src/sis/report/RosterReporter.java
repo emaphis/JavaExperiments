@@ -37,7 +37,7 @@ public class RosterReporter {
         buffer.append(NEWLINE);
     }
 
-    String getReport() {
+    public String getReport() {
         StringBuilder buffer = new StringBuilder();
 
         writeHeader(buffer);
