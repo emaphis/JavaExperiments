@@ -28,3 +28,6 @@ Add ArrayList<Students> to hold enrolled Students.
 
 Create TestSuite to hold CousesSessionTest and StudentTest test suites.
 
+Refactor CousrseSessionTest, move session and session2 to global variables.
+
+Add startDate to CourseSession, calculate 

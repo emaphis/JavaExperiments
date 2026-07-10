@@ -1,6 +1,7 @@
 
+import studentinfo.StudentTest;
+import studentinfo.CourseSessionTest;
 import junit.framework.TestSuite;
-
 
 /**
  *

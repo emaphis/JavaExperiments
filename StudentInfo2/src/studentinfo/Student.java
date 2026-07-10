@@ -1,10 +1,12 @@
+package studentinfo;
+
 
 /**
  *
  * @author emaph
  */
-class Student {
-    private String name;
+public class Student {
+    private final String name;
 
     Student(String name) {
         this.name = name;
