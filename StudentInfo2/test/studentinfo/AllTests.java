@@ -2,6 +2,7 @@ package studentinfo;
 
 import junit.framework.TestSuite;
 import sis.report.RosterReportTest;
+import utility.DateUtilTest;
 
 /**
  *
@@ -13,6 +14,7 @@ public class AllTests {
         suite.addTestSuite(StudentTest.class );
         suite.addTestSuite(CourseSessionTest.class);
         suite.addTestSuite(RosterReportTest.class);
+        suite.addTestSuite(DateUtilTest.class);
         return suite;
     }
 

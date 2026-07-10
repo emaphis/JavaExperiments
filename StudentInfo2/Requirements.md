@@ -43,3 +43,5 @@ Create StringsTest unit test class, place in in a utility package
 Create and test a RosterReort for CourseSession.
 
 Refactor: Put RosterReport in it's own class and it's test in it's own unit test.
+
+Refactor: CourseSessionTest and RosterReporterTest. move createDate to a new class utility.DateUtil

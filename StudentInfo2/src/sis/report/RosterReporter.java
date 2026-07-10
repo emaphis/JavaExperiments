@@ -20,22 +20,31 @@ public class RosterReporter {
 
     public RosterReporter(CourseSession session) {
         this.session = session;
+    }
 
+    void writeHeader(StringBuilder buffer) {
+        buffer.append(ROSTER_REPORT_HEADER);
+    }
+
+    void writeBody(StringBuilder buffer) {
+        for (Student student : session.getAllStudents()) {
+            buffer.append(student.getName());
+            buffer.append(NEWLINE);
+        }
+    }
+
+    void writeFooter(StringBuilder buffer) {
+        buffer.append(ROSTER_REPORT_FOOTER);
+        buffer.append(session.getNumberOfStudents());
+        buffer.append(NEWLINE);
     }
 
     String getReport() {
         StringBuilder buffer = new StringBuilder();
 
-        buffer.append(ROSTER_REPORT_HEADER);
-
-        for (Student student : session.getAllStudents()) {
-            buffer.append(student.getName());
-            buffer.append(NEWLINE);
-        }
-
-        buffer.append(ROSTER_REPORT_FOOTER);
-        buffer.append(session.getNumberOfStudents());
-        buffer.append(NEWLINE);
+        writeHeader(buffer);
+        writeBody(buffer);
+        writeFooter(buffer);
 
         return buffer.toString();
     }
