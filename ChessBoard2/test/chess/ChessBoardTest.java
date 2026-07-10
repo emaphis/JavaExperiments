@@ -14,18 +14,24 @@ public class ChessBoardTest extends TestCase {
         super(testName);
     }
 
+    ChessBoard board;
+    Pawn pawnB = new Pawn(Pawn.BLACK);
+    Pawn pawnW = new Pawn(Pawn.WHITE);
+
+    @Override
+    protected void setUp() throws Exception {
+        board = new ChessBoard();
+    }
+
+
     public void testCreate() {
-        ChessBoard board = new ChessBoard();
         assertEquals(0, board.getNumPieces());
     }
 
     public void testAddPieces() {
-        ChessBoard board = new ChessBoard();
-        Pawn pawnB = new Pawn(Pawn.BLACK);
         board.addPawn(pawnB);
         assertEquals(1, board.getNumPieces());
 
-        Pawn pawnW = new Pawn(Pawn.WHITE);
         board.addPawn(pawnW);
         assertEquals(2, board.getNumPieces());
 
