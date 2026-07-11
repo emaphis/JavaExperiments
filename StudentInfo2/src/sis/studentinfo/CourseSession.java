@@ -13,6 +13,7 @@ public class CourseSession {
     private final String number;
     private ArrayList<Student> students = new ArrayList<Student>();
     private final Date startDate;
+    private static int count;
 
     /**
      * Creates a CourseSession
@@ -20,10 +21,18 @@ public class CourseSession {
      * @param number
      * @param startDate
      */
-    public CourseSession(String department, String number, Date startDate) {
+    private CourseSession(String department, String number, Date startDate) {
         this.department = department;
         this.number = number;
         this.startDate = startDate;
+    }
+
+    public static CourseSession create(
+            String department,
+            String number,
+            Date startDate) {
+        incrementCount();
+        return new CourseSession(department, number, startDate);
     }
 
     /**
@@ -88,6 +97,18 @@ public class CourseSession {
         int numberOfDays = 16 * 7 - 3;  // weeks * days per week - 3 days
         calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
         return calendar.getTime();
+    }
+
+    static void resetCount() {
+        count = 0;
+    }
+
+    static int getCount() {
+        return count;
+    }
+
+    private static void incrementCount() {
+        ++count;
     }
 
 }
