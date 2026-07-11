@@ -35,3 +35,36 @@ Exercise 6, 7
 Refactor the classes, move them to appropriate packages, chess pieces.
 
 Exercise 9: Create a test suite.
+
+## Lesson 3 - Strings
+
+Strings, chars, StringBuilder, iterating through collections, packages, public private
+
+Exercise 3:
+
+Add getRepresentation to Pawn class. 'P' for black Pawn, 'p' for white Pawn
+
+Add second parameter to Pawn class to set representation.
+
+Exercise 4:
+
+Add two ranks to ChessBoard to hold white and black Pawns.
+
+Exercise 5:
+
+Add 6 more ranks to represent empty pieces.
+
+Add Empty "color" to use a Pawn to represent an empty square.
+
+Refactor count method to count all non-empty squares in the 8 ranks.
+
+Exercise 6:
+
+Add method that produces a String representation of pieces in a rank.
+
+Test the new methods.
+
+Exercise 8:
+
+Add a method to chessBoard that produces a string representation of all
+  8 ranks of the board.

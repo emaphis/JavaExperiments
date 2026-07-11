@@ -15,28 +15,23 @@ public class ChessBoardTest extends TestCase {
     }
 
     ChessBoard board;
-    Pawn pawnB = new Pawn(Pawn.BLACK);
-    Pawn pawnW = new Pawn(Pawn.WHITE);
 
     @Override
     protected void setUp() throws Exception {
         board = new ChessBoard();
     }
 
-
     public void testCreate() {
-        assertEquals(0, board.getNumPieces());
+        assertEquals(16, board.getNumPieces());
+        assertEquals("........", board.getRankRepresentation(board.rank1));
+        assertEquals("pppppppp", board.getRankRepresentation(board.rank2));
+        assertEquals("........", board.getRankRepresentation(board.rank3));
+        assertEquals("........", board.getRankRepresentation(board.rank4));
+        assertEquals("........", board.getRankRepresentation(board.rank5));
+        assertEquals("........", board.getRankRepresentation(board.rank6));
+        assertEquals("PPPPPPPP", board.getRankRepresentation(board.rank7));
+        assertEquals("........", board.getRankRepresentation(board.rank8));
+        System.out.println(board.getBoardRepresentation());
     }
 
-    public void testAddPieces() {
-        board.addPawn(pawnB);
-        assertEquals(1, board.getNumPieces());
-
-        board.addPawn(pawnW);
-        assertEquals(2, board.getNumPieces());
-
-        ArrayList<Pawn> pawns = board.getPawnList();
-        assertEquals(pawnB.getColor(), pawns.get(0).getColor());
-        assertEquals(pawnW.getColor(), pawns.get(1).getColor());
-    }
 }

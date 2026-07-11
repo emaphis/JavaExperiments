@@ -19,18 +19,28 @@ public class PawnTest extends TestCase {
         super(testName);
     }
 
+    Pawn pawnW = new Pawn(Pawn.WHITE, 'p');
+    Pawn pawnB = new Pawn(Pawn.BLACK, 'P');
+
     public void testCreate() {
 
-        Pawn pawn1 = new Pawn(Pawn.WHITE);
+        Pawn pawn1 = new Pawn(Pawn.WHITE, 'p');
         assertEquals("white", pawn1.getColor());
+        assertEquals('p', pawn1.getRepresentation());
 
-        Pawn pawn2 = new Pawn(Pawn.BLACK);
+        Pawn pawn2 = new Pawn(Pawn.BLACK, 'P');
         assertEquals("black", pawn2.getColor());
+        assertEquals('P', pawn2.getRepresentation());
+
+        Pawn empty = new Pawn(Pawn.EMPTY, '.');
+        assertEquals("none", empty.getColor());
+        assertEquals('.', empty.getRepresentation());
     }
 
-    public void testCreateDefualt() {
+    public void testCreateDefault() {
         Pawn pawn1 = new Pawn();
         assertEquals("white", pawn1.getColor());
+        assertEquals('p', pawn1.getRepresentation());
     }
 
 }
