@@ -47,3 +47,7 @@ Refactor: Put RosterReport in it's own class and it's test in it's own unit test
 Refactor: CourseSessionTest and RosterReporterTest. move createDate to a new class utility.DateUtil
 
 Refactor: move classes ot sis.studentinfo and sis.reports packages.
+
+Lesson 4 - Class Methods.
+
+Class variables and methods, static imports, utility methods, booleans
