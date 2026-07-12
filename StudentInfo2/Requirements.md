@@ -51,3 +51,20 @@ Refactor: move classes ot sis.studentinfo and sis.reports packages.
 Lesson 4 - Class Methods.
 
 Class variables and methods, static imports, utility methods, booleans
+
+Add a ReportConstats class to hold constants.
+
+Refactor move the NEWLINE constant from the RosterReporter class to the ReportConstants class.
+
+Test.
+
+Add counter static class variable to CourseSession to count instances.
+
+Add static factory to control the counting.
+
+Add Test
+
+Add tracking credits, store the number of credits.
+
+Track the credits needed for full-time status
+

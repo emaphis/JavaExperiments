@@ -14,6 +14,7 @@ public class CourseSession {
     private ArrayList<Student> students = new ArrayList<Student>();
     private final Date startDate;
     private static int count;
+    private int numberOfCredits;
 
     /**
      * Creates a CourseSession
@@ -33,6 +34,10 @@ public class CourseSession {
             Date startDate) {
         incrementCount();
         return new CourseSession(department, number, startDate);
+    }
+
+    void setNumberOfCredits(int numberOfCredits) {
+        this.numberOfCredits = numberOfCredits;
     }
 
     /**
@@ -68,6 +73,7 @@ public class CourseSession {
      * @param student to enroll
      */
     public void enroll(Student student) {
+        student.addCredits(numberOfCredits);
         students.add(student);
     }
 
