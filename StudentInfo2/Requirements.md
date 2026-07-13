@@ -68,3 +68,4 @@ Add tracking credits, store the number of credits.
 
 Track the credits needed for full-time status
 
+Add in-state and out-of-state tracking to Student class.

@@ -41,4 +41,13 @@ public class StudentTest extends TestCase {
         assertEquals(Student.CREDITS_REQUIRED_FOR_FULL_TIME, student.getCredits());
         assertTrue(student.isFullTime());
     }
+
+    public void testInState() {
+        Student student = new Student("a");
+        assertFalse(student.isInState());
+        student.setState(Student.IN_STATE);
+        assertTrue(student.isInState());
+        student.setState("MD");
+        assertFalse(student.isInState());
+    }
 }
