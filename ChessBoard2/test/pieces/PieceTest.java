@@ -6,41 +6,35 @@ package pieces;
  * and open the template in the editor.
  */
 
-import pieces.Pawn;
 import junit.framework.TestCase;
 
 /**
  *
  * @author emaph
  */
-public class PawnTest extends TestCase {
+public class PieceTest extends TestCase {
 
-    public PawnTest(String testName) {
+    public PieceTest(String testName) {
         super(testName);
     }
 
-    Pawn pawnW = new Pawn(Pawn.WHITE, 'p');
-    Pawn pawnB = new Pawn(Pawn.BLACK, 'P');
+    Piece pawnW = Piece.create(Piece.WHITE, 'p');
+    Piece pawnB = Piece.create(Piece.BLACK, 'P');
 
     public void testCreate() {
 
-        Pawn pawn1 = new Pawn(Pawn.WHITE, 'p');
+        Piece pawn1 = Piece.create(Piece.WHITE, 'p');
         assertEquals("white", pawn1.getColor());
         assertEquals('p', pawn1.getRepresentation());
 
-        Pawn pawn2 = new Pawn(Pawn.BLACK, 'P');
+        Piece pawn2 = Piece.create(Piece.BLACK, 'P');
         assertEquals("black", pawn2.getColor());
         assertEquals('P', pawn2.getRepresentation());
 
-        Pawn empty = new Pawn(Pawn.EMPTY, '.');
+        Piece empty = Piece.create(Piece.EMPTY, '.');
         assertEquals("none", empty.getColor());
         assertEquals('.', empty.getRepresentation());
     }
 
-    public void testCreateDefault() {
-        Pawn pawn1 = new Pawn();
-        assertEquals("white", pawn1.getColor());
-        assertEquals('p', pawn1.getRepresentation());
-    }
 
 }

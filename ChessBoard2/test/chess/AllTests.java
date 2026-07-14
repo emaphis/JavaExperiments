@@ -1,7 +1,7 @@
 package chess;
 
 
-import pieces.PawnTest;
+import pieces.PieceTest;
 import junit.framework.TestSuite;
 
 /**
@@ -13,7 +13,7 @@ public class AllTests {
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
         suite.addTestSuite(ChessBoardTest.class);
-        suite.addTestSuite(PawnTest.class);
+        suite.addTestSuite(PieceTest.class);
         return suite;
     }
 

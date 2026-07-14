@@ -1,7 +1,7 @@
 package chess;
 
 import java.util.ArrayList;
-import pieces.Pawn;
+import pieces.Piece;
 
 
 /**
@@ -10,14 +10,14 @@ import pieces.Pawn;
  */
 class ChessBoard {
 
-    public ArrayList<Pawn> rank1 = new ArrayList<Pawn>();
-    public ArrayList<Pawn> rank2 = new ArrayList<Pawn>();
-    public ArrayList<Pawn> rank3 = new ArrayList<Pawn>();
-    public ArrayList<Pawn> rank4 = new ArrayList<Pawn>();
-    public ArrayList<Pawn> rank5 = new ArrayList<Pawn>();
-    public ArrayList<Pawn> rank6 = new ArrayList<Pawn>();
-    public ArrayList<Pawn> rank7 = new ArrayList<Pawn>();
-    public ArrayList<Pawn> rank8 = new ArrayList<Pawn>();
+    public ArrayList<Piece> rank1 = new ArrayList<Piece>();
+    public ArrayList<Piece> rank2 = new ArrayList<Piece>();
+    public ArrayList<Piece> rank3 = new ArrayList<Piece>();
+    public ArrayList<Piece> rank4 = new ArrayList<Piece>();
+    public ArrayList<Piece> rank5 = new ArrayList<Piece>();
+    public ArrayList<Piece> rank6 = new ArrayList<Piece>();
+    public ArrayList<Piece> rank7 = new ArrayList<Piece>();
+    public ArrayList<Piece> rank8 = new ArrayList<Piece>();
 
     public ChessBoard() {
         initialize();
@@ -39,27 +39,27 @@ class ChessBoard {
 
     /**
      * Produces a String representing the passed rank. The char representation
-     * determines the type of Pawn.
+     * determines the type of Piece.
      *
      * @param rank the rank to fill
      * @param representation the String representing the rank.
      */
-    private void fillRankWithPawn(ArrayList<Pawn> rank, char representation) {
+    private void fillRankWithPawn(ArrayList<Piece> rank, char representation) {
         for (int i = 0; i < 8; i++) {
-            Pawn pawn;
+            Piece pawn;
             if (representation == 'p') {
-                pawn = new Pawn(Pawn.WHITE, representation);
+                pawn = Piece.create(Piece.WHITE, representation);
             } else if (representation == 'P') {
-                pawn = new Pawn(Pawn.BLACK, representation);
+                pawn = Piece.create(Piece.BLACK, representation);
             } else {
-                pawn = new Pawn(Pawn.EMPTY, representation);
+                pawn = Piece.create(Piece.EMPTY, representation);
             }
             rank.add(pawn);
         }
     }
 
     /**
-     * @return number of Pawns add to ChessBoard.
+     * @return number of Pieces add to ChessBoard.
      */
     int getNumPieces() {
         int size = countRank(rank1)
@@ -78,11 +78,11 @@ class ChessBoard {
      * representation.s
      *
      * @param rank to count
-     * @return the count of Pawns in the rank.
+     * @return the count of Pieces in the rank.
      */
-    private int countRank(ArrayList<Pawn> rank) {
+    private int countRank(ArrayList<Piece> rank) {
         int count = 0;
-        for (Pawn piece : rank) {
+        for (Piece piece : rank) {
             if (piece.getRepresentation() != '.') {
                 count++;
             }
@@ -96,10 +96,10 @@ class ChessBoard {
      * @param rank to represent.
      * @return the String representing the rank.
      */
-    public String getRankRepresentation(ArrayList<Pawn> rank) {
+    public String getRankRepresentation(ArrayList<Piece> rank) {
         if (rank.size() > 0) {
             StringBuilder buffer = new StringBuilder();
-            for (Pawn pawn : rank) {
+            for (Piece pawn : rank) {
                 buffer.append(pawn.getRepresentation());
             }
             return buffer.toString();

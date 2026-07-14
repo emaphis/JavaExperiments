@@ -19,7 +19,7 @@ public class StudentApp {
         System.out.println("Processing Students ...");
 
         System.out.println();
-        CourseSession session = new CourseSession("ENGL", "101", DateUtil.createDate(2003, 1, 6));
+        CourseSession session = CourseSession.create("ENGL", "101", DateUtil.createDate(2003, 1, 6));
         session.enroll(new Student("Cain DiVoe"));
         session.enroll(new Student("Coralee DeVaughn"));
         session.enroll(new Student("Joe Bloe"));

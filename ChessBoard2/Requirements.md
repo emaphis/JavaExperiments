@@ -68,3 +68,15 @@ Exercise 8:
 
 Add a method to chessBoard that produces a string representation of all
   8 ranks of the board.
+
+Lesson 4
+
+Class variables and methods, static imports, utility methods, booleans
+
+Exercise 2: Convert Pawn class to a more generic Piece class
+
+Refactor: eliminate default constructor.
+
+Add Piece names as static String constants.
+
+Add private method that converts char representations to String name.

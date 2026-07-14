@@ -1,7 +1,7 @@
 package chess;
 
 import java.util.ArrayList;
-import pieces.Pawn;
+import pieces.Piece;
 import junit.framework.TestCase;
 
 /**
