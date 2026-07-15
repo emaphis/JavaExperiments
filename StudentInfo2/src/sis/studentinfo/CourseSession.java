@@ -8,7 +8,7 @@ import java.util.*;
  * session of a specific university course.
  * @author emaph
  */
-public class CourseSession {
+public class CourseSession implements Comparable<CourseSession> {
     private final String department;
     private final String number;
     private ArrayList<Student> students = new ArrayList<Student>();
@@ -115,6 +115,15 @@ public class CourseSession {
 
     private static void incrementCount() {
         ++count;
+    }
+
+    public int compareTo(CourseSession that) {
+        int compare
+                = this.getDepartment().compareTo(that.getDepartment());
+        if (compare == 0) {
+            compare = this.getNumber().compareTo(that.getNumber());
+        }
+        return compare;
     }
 
 }

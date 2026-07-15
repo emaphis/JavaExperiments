@@ -48,7 +48,7 @@ Refactor: CourseSessionTest and RosterReporterTest. move createDate to a new cla
 
 Refactor: move classes ot sis.studentinfo and sis.reports packages.
 
-Lesson 4 - Class Methods.
+## Lesson 4 - Class Methods.
 
 Class variables and methods, static imports, utility methods, booleans
 
@@ -69,3 +69,15 @@ Add tracking credits, store the number of credits.
 Track the credits needed for full-time status
 
 Add in-state and out-of-state tracking to Student class.
+
+## Lesson 5 - Interfaces and Polymorphism.
+
+sorting, interfaces, Comparable, if statements, enums, polymorphism.
+
+Sorting:
+
+Report for CourseSessions
+
+Add CourseReportTest unit test.
+
+CourtSession implement CompareTo for sorting report lines.

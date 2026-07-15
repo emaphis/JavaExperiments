@@ -79,4 +79,14 @@ Refactor: eliminate default constructor.
 
 Add Piece names as static String constants.
 
+Update Piece method that returns representation.
+
 Add private method that converts char representations to String name.
+
+Add class variables to store number of white and black pieces.
+
+Refactor ChessBoard
+
+Add ranks of pieces.
+
+Add initalization function.
