@@ -17,6 +17,7 @@ public class CourseSessionTest extends TestCase {
     private CourseSession session;
     private Date startDate;
     private static final int CREDITS = 3;
+    private static final double GRADE_TOLERANCE = 0.05;
 
     @Override
     public void setUp() {
@@ -65,5 +66,24 @@ public class CourseSessionTest extends TestCase {
                 = CourseSession.create("ENGL", "101", startDate);
         session2.setNumberOfCredits(CREDITS);
         return session2;
+    }
+
+    public void testCalculateGpa() {
+        Student student = new Student("a");
+        assertGpa(student, 0.0);
+        student.addGrade("A");
+        assertGpa(student, 4.0);
+        student.addGrade("B");
+        assertGpa(student, 3.5);
+        student.addGrade("C");
+        assertGpa(student, 3.0);
+        student.addGrade("D");
+        assertGpa(student, 2.5);
+        student.addGrade("F");
+        assertGpa(student, 2.0);
+    }
+
+    private void assertGpa(Student student, double expectedGpa) {
+        assertEquals(expectedGpa, student.getGpa(), GRADE_TOLERANCE);
     }
 }

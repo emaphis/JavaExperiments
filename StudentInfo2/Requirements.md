@@ -74,10 +74,14 @@ Add in-state and out-of-state tracking to Student class.
 
 sorting, interfaces, Comparable, if statements, enums, polymorphism.
 
-Sorting:
-
 Report for CourseSessions
+
+Sorting:
 
 Add CourseReportTest unit test.
 
 CourtSession implement CompareTo for sorting report lines.
+
+Grading:
+
+Add testCalculateGpa to StudentTest
