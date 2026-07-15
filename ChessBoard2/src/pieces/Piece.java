@@ -10,6 +10,9 @@ public class Piece {
     private final String color;
     private final String name;
 
+    private static int whiteCount = 0;
+    private static int blackCount = 0;
+
     public static final String PAWN = "pawn";
     public static final String KNIGHT = "knight";
     public static final String ROOK = "rook";
@@ -34,7 +37,9 @@ public class Piece {
      * @return a Piece
      */
     public static Piece create(String color, char representation) {
-        return new Piece(color, representation);
+        Piece piece = new Piece(color, representation);
+        pieceCount(color, representation);
+        return piece;
     }
 
     /**
@@ -68,6 +73,14 @@ public class Piece {
         return color;
     }
 
+    public boolean isWhite() {
+        return color.equals(WHITE);
+    }
+
+    public boolean isBlack() {
+        return color.equals(BLACK);
+    }
+
     /**
      * Return the char representation if Piece
      *
@@ -98,5 +111,27 @@ public class Piece {
         return rep;
     }
 
+    private static void pieceCount(String color, char rep) {
+        if (color.equals(Piece.WHITE)) {
+            ++whiteCount;
+        } else if (color.equals(Piece.BLACK)) {
+            ++blackCount;
+        }
+    }
 
+    public static int getPieceCount(String color) {
+        if (color.equals(Piece.WHITE)) {
+            return whiteCount;
+        } else {
+            return blackCount;
+        }
+    }
+
+    /**
+     * Blech
+     */
+    public static void resetCounters() {
+        whiteCount = 0;
+        blackCount = 0;
+    }
 }

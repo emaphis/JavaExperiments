@@ -18,10 +18,9 @@ public class PieceTest extends TestCase {
         super(testName);
     }
 
-    Piece pawnW = Piece.create(Piece.WHITE, 'p');
-    Piece pawnB = Piece.create(Piece.BLACK, 'P');
 
     public void testCreate() {
+        Piece.resetCounters();
 
         Piece pawn1 = Piece.create(Piece.WHITE, 'p');
         assertEquals("white", pawn1.getColor());
@@ -34,7 +33,24 @@ public class PieceTest extends TestCase {
         Piece empty = Piece.create(Piece.EMPTY, '.');
         assertEquals("none", empty.getColor());
         assertEquals('.', empty.getRepresentation());
+
+        assertEquals(1, Piece.getPieceCount(Piece.WHITE));
+        assertEquals(1, Piece.getPieceCount(Piece.BLACK));
     }
 
+    public void testColorPredicates() {
+        Piece pawn1 = Piece.create(Piece.WHITE, 'p');
+        Piece pawn2 = Piece.create(Piece.BLACK, 'P');
+        Piece empty = Piece.create(Piece.EMPTY, '.');
 
+        assertTrue(pawn1.isWhite());
+        assertFalse(pawn2.isWhite());
+
+        assertFalse(pawn1.isBlack());
+        assertTrue(pawn2.isBlack());
+
+        assertFalse(empty.isWhite());
+        assertFalse(empty.isBlack());
+
+    }
 }

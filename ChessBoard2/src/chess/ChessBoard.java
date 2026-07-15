@@ -20,21 +20,22 @@ class ChessBoard {
     public ArrayList<Piece> rank8 = new ArrayList<Piece>();
 
     public ChessBoard() {
-        initialize();
+        //   initialize();
     }
 
     /**
      * Initialize the ChessBoard. Called by the constructor.
      */
-    private void initialize() {
-        fillRankWithPawn(rank1, '.');
-        fillRankWithPawn(rank2, 'p');
+    public void initialize() {
+        Piece.resetCounters();
+        fillRankWithPieces(rank1, Piece.BLACK);
+        fillRankWithPawn(rank2, 'P');
         fillRankWithPawn(rank3, '.');
         fillRankWithPawn(rank4, '.');
         fillRankWithPawn(rank5, '.');
         fillRankWithPawn(rank6, '.');
-        fillRankWithPawn(rank7, 'P');
-        fillRankWithPawn(rank8, '.');
+        fillRankWithPawn(rank7, 'p');
+        fillRankWithPieces(rank8, Piece.WHITE);
     }
 
     /**
@@ -58,10 +59,21 @@ class ChessBoard {
         }
     }
 
+    private void fillRankWithPieces(ArrayList<Piece> rank, String color) {
+        rank.add(Piece.create(color, 'r'));
+        rank.add(Piece.create(color, 'n'));
+        rank.add(Piece.create(color, 'b'));
+        rank.add(Piece.create(color, 'q'));
+        rank.add(Piece.create(color, 'k'));
+        rank.add(Piece.create(color, 'b'));
+        rank.add(Piece.create(color, 'n'));
+        rank.add(Piece.create(color, 'r'));
+    }
+
     /**
      * @return number of Pieces add to ChessBoard.
      */
-    int getNumPieces() {
+    int pieceCount() {
         int size = countRank(rank1)
                 + countRank(rank2)
                 + countRank(rank3)
@@ -108,7 +120,7 @@ class ChessBoard {
         }
     }
 
-    public String getBoardRepresentation() {
+    public String print() {
         StringBuilder buffer = new StringBuilder();
         buffer.append(getRankRepresentation(rank1));
         buffer.append('\n');

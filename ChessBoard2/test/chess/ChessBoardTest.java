@@ -14,7 +14,7 @@ public class ChessBoardTest extends TestCase {
         super(testName);
     }
 
-    ChessBoard board;
+    private ChessBoard board;
 
     @Override
     protected void setUp() throws Exception {
@@ -22,16 +22,22 @@ public class ChessBoardTest extends TestCase {
     }
 
     public void testCreate() {
-        assertEquals(16, board.getNumPieces());
-        assertEquals("........", board.getRankRepresentation(board.rank1));
-        assertEquals("pppppppp", board.getRankRepresentation(board.rank2));
-        assertEquals("........", board.getRankRepresentation(board.rank3));
-        assertEquals("........", board.getRankRepresentation(board.rank4));
-        assertEquals("........", board.getRankRepresentation(board.rank5));
-        assertEquals("........", board.getRankRepresentation(board.rank6));
-        assertEquals("PPPPPPPP", board.getRankRepresentation(board.rank7));
-        assertEquals("........", board.getRankRepresentation(board.rank8));
-        System.out.println(board.getBoardRepresentation());
+        board.initialize();
+        assertEquals(32, board.pieceCount());
+        assertEquals(16, Piece.getPieceCount(Piece.WHITE));
+        assertEquals(16, Piece.getPieceCount(Piece.BLACK));
+
+        String boardRep
+                = "RNBQKBNR" + "\n"
+                + "PPPPPPPP" + "\n"
+                + "........" + "\n"
+                + "........" + "\n"
+                + "........" + "\n"
+                + "........" + "\n"
+                + "pppppppp" + "\n"
+                + "rnbqkbnr" + "\n";
+        assertEquals(boardRep, board.print());
+        System.out.println(board.print());
     }
 
 }
