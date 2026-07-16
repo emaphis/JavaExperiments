@@ -29,12 +29,12 @@ class ChessBoard {
     public void initialize() {
         Piece.resetCounters();
         fillRankWithPieces(rank1, Piece.Color.BLACK);
-        fillRankWithPawn(rank2, 'P');
-        fillRankWithPawn(rank3, '.');
-        fillRankWithPawn(rank4, '.');
-        fillRankWithPawn(rank5, '.');
-        fillRankWithPawn(rank6, '.');
-        fillRankWithPawn(rank7, 'p');
+        fillRankWithPawn(rank2, Piece.Color.BLACK);
+        fillRankWithPawn(rank3, Piece.Color.NONE);
+        fillRankWithPawn(rank4, Piece.Color.NONE);
+        fillRankWithPawn(rank5, Piece.Color.NONE);
+        fillRankWithPawn(rank6, Piece.Color.NONE);
+        fillRankWithPawn(rank7, Piece.Color.WHITE);
         fillRankWithPieces(rank8, Piece.Color.WHITE);
     }
 
@@ -45,29 +45,29 @@ class ChessBoard {
      * @param rank the rank to fill
      * @param representation the String representing the rank.
      */
-    private void fillRankWithPawn(List<Piece> rank, char representation) {
+    private void fillRankWithPawn(List<Piece> rank, Piece.Color color) {
         for (int i = 0; i < 8; i++) {
             Piece pawn;
-            if (representation == 'p') {
-                pawn = Piece.create(Piece.Color.WHITE, representation);
-            } else if (representation == 'P') {
-                pawn = Piece.create(Piece.Color.BLACK, representation);
+            if (color == Piece.Color.WHITE) {
+                pawn = Piece.create(Piece.Color.WHITE, Piece.Type.PAWN);
+            } else if (color == Piece.Color.BLACK) {
+                pawn = Piece.create(Piece.Color.BLACK, Piece.Type.PAWN);
             } else {
-                pawn = Piece.create(Piece.Color.NONE, representation);
+                pawn = Piece.create(Piece.Color.NONE, Piece.Type.NO_PIECE);
             }
             rank.add(pawn);
         }
     }
 
     private void fillRankWithPieces(List<Piece> rank, Piece.Color color) {
-        rank.add(Piece.create(color, 'r'));
-        rank.add(Piece.create(color, 'n'));
-        rank.add(Piece.create(color, 'b'));
-        rank.add(Piece.create(color, 'q'));
-        rank.add(Piece.create(color, 'k'));
-        rank.add(Piece.create(color, 'b'));
-        rank.add(Piece.create(color, 'n'));
-        rank.add(Piece.create(color, 'r'));
+        rank.add(Piece.create(color, Piece.Type.ROOK));
+        rank.add(Piece.create(color, Piece.Type.KNIGHT));
+        rank.add(Piece.create(color, Piece.Type.BISHOP));
+        rank.add(Piece.create(color, Piece.Type.QUEEN));
+        rank.add(Piece.create(color, Piece.Type.KING));
+        rank.add(Piece.create(color, Piece.Type.BISHOP));
+        rank.add(Piece.create(color, Piece.Type.KNIGHT));
+        rank.add(Piece.create(color, Piece.Type.ROOK));
     }
 
     /**
@@ -95,7 +95,7 @@ class ChessBoard {
     private int countRank(List<Piece> rank) {
         int count = 0;
         for (Piece piece : rank) {
-            if (piece.getRepresentation() != '.') {
+            if (piece.getColor() != Piece.Color.NONE) {
                 count++;
             }
         }

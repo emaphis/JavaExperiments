@@ -9,62 +9,55 @@ package pieces;
 public class Piece {
 
     public enum Color { WHITE, BLACK, NONE }
+
+    // Piece names constants
+    public static enum Type {
+        PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING, NO_PIECE
+    };
+
     private final Color color;
-    private final String name;
+    private final Type type;
 
     private static int whiteCount = 0;
     private static int blackCount = 0;
 
-    public static final String PAWN = "pawn";
-    public static final String KNIGHT = "knight";
-    public static final String ROOK = "rook";
-    public static final String BISHOP = "bishop";
-    public static final String QUEEN = "queen";
-    public static final String KING = "king";
-
-    private Piece(Color color, char representation) {
+    private Piece(Color color, Type type) {
         this.color = color;
-        this.name = getName(representation);
+        this.type = type;
+        //this.type = getType(representation);
     }
 
     /**
      * Create a Piece given a color and a representation
      *
      * @param color
-     * @param representation
+     * @param type
      * @return a Piece
      */
-    public static Piece create(Color color, char representation) {
-        Piece piece = new Piece(color, representation);
-        pieceCount(color, representation);
+    public static Piece create(Color color, Type type) {
+        Piece piece = new Piece(color, type);
+        pieceCount(color);
         return piece;
     }
 
     /**
-     * Return Piece Name given a Representation.
+     * Return Piece Type given a Representation.
      *
      * @param representation
      * @return
      */
-    private String getName(char representation) {
-        String pieceName;
+    private Type getType(char representation) {
+        Type Piecetype;
         char rep = Character.toLowerCase(representation);
-        if (rep == 'p') {
-            pieceName = PAWN;
-        } else if (rep == 'n') {
-            pieceName = KNIGHT;
-        } else if (rep == 'r') {
-            pieceName = ROOK;
-        } else if (rep == 'b') {
-            pieceName = BISHOP;
-        } else if (rep == 'q') {
-            pieceName = QUEEN;
-        } else if (rep == 'k') {
-            pieceName = KING;
-        } else {
-            pieceName = ".";
-        }
-        return pieceName;
+        if (rep == 'p')      Piecetype = Type.PAWN;
+        else if (rep == 'n') Piecetype = Type.KNIGHT;
+        else if (rep == 'r') Piecetype = Type.ROOK;
+        else if (rep == 'b') Piecetype = Type.BISHOP;
+        else if (rep == 'q') Piecetype = Type.QUEEN;
+        else if (rep == 'k') Piecetype = Type.KING;
+        else Piecetype = Type.NO_PIECE;
+
+        return Piecetype;
     }
 
     public Color getColor() {
@@ -80,27 +73,19 @@ public class Piece {
     }
 
     /**
-     * Return the char representation if Piece
+     * Return the char representation of Piece
      *
      * @return char representation
      */
     public char getRepresentation() {
         char rep;
-        if (name.equals(PAWN)) {
-            rep = 'p';
-        } else if (name.equals(KNIGHT)) {
-            rep = 'n';
-        } else if (name.equals(BISHOP)) {
-            rep = 'b';
-        } else if (name.equals(ROOK)) {
-            rep = 'r';
-        } else if (name.equals(QUEEN)) {
-            rep = 'q';
-        } else if (name.equals(KING)) {
-            rep = 'k';
-        } else {
-            rep = '.';
-        }
+        if (type == Type.PAWN)        rep = 'p';
+        else if (type == Type.KNIGHT) rep = 'n';
+        else if (type == Type.BISHOP) rep = 'b';
+        else if (type == Type.ROOK)   rep = 'r';
+        else if (type == Type.QUEEN)  rep = 'q';
+        else if (type == Type.KING)   rep = 'k';
+        else  rep = '.';
 
         if (color  == Color.BLACK) {
             rep = Character.toUpperCase(rep);
@@ -109,7 +94,7 @@ public class Piece {
         return rep;
     }
 
-    private static void pieceCount(Color color, char rep) {
+    private static void pieceCount(Color color) {
         if (color == Color.WHITE) {
             ++whiteCount;
         } else if (color == Color.BLACK) {
