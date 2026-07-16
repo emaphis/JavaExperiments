@@ -11,9 +11,7 @@ import static sis.report.ReportConstants.NEWLINE;
 public class RosterReporter {
 
     private final CourseSession session;
-    //private ArrayList<Student> students = new ArrayList<Student>();
 
-    // final String NEWLINE = System.getProperty("line.separator");
     static final String ROSTER_REPORT_HEADER = "Student" + NEWLINE + "———-" + NEWLINE;
     static final String ROSTER_REPORT_FOOTER = NEWLINE + "# students = ";
 

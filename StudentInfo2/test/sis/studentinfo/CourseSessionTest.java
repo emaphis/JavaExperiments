@@ -71,16 +71,37 @@ public class CourseSessionTest extends TestCase {
     public void testCalculateGpa() {
         Student student = new Student("a");
         assertGpa(student, 0.0);
-        student.addGrade("A");
+        student.addGrade(Student.Grade.A);
         assertGpa(student, 4.0);
-        student.addGrade("B");
+        student.addGrade(Student.Grade.B);
         assertGpa(student, 3.5);
-        student.addGrade("C");
+        student.addGrade(Student.Grade.C);
         assertGpa(student, 3.0);
-        student.addGrade("D");
+        student.addGrade(Student.Grade.D);
         assertGpa(student, 2.5);
-        student.addGrade("F");
+        student.addGrade(Student.Grade.F);
         assertGpa(student, 2.0);
+    }
+
+    public void testCalculateHonorsStudentGpa() {
+        assertGpa(createHonorsStudent(), 0.0);
+        assertGpa(createHonorsStudent(Student.Grade.A), 5.0);
+        assertGpa(createHonorsStudent(Student.Grade.B), 4.0);
+        assertGpa(createHonorsStudent(Student.Grade.C), 3.0);
+        assertGpa(createHonorsStudent(Student.Grade.D), 2.0);
+        assertGpa(createHonorsStudent(Student.Grade.F), 0.0);
+    }
+
+    private Student createHonorsStudent(Student.Grade grade) {
+        Student student = createHonorsStudent();
+        student.addGrade(grade);
+        return student;
+    }
+
+    private Student createHonorsStudent() {
+        Student student = new Student("a");
+        student.setGradingStrategy(new HonorsGradingStrategy());
+        return student;
     }
 
     private void assertGpa(Student student, double expectedGpa) {

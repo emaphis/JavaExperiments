@@ -12,7 +12,7 @@ import static sis.report.ReportConstants.NEWLINE;
  */
 class CourseReport {
 
-    private ArrayList<CourseSession> sessions
+    private List<CourseSession> sessions
             = new ArrayList<CourseSession>();
 
     public CourseReport() {

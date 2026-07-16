@@ -11,7 +11,7 @@ import java.util.*;
 public class CourseSession implements Comparable<CourseSession> {
     private final String department;
     private final String number;
-    private ArrayList<Student> students = new ArrayList<Student>();
+    private List<Student> students = new ArrayList<Student>();
     private final Date startDate;
     private static int count;
     private int numberOfCredits;
@@ -90,7 +90,7 @@ public class CourseSession implements Comparable<CourseSession> {
      *
      * @return List of Students
      */
-    public ArrayList<Student> getAllStudents() {
+    public List<Student> getAllStudents() {
         return students;
     }
 
