@@ -1,6 +1,5 @@
 package chess;
 
-import java.util.ArrayList;
 import pieces.Piece;
 import junit.framework.TestCase;
 
@@ -24,8 +23,8 @@ public class ChessBoardTest extends TestCase {
     public void testCreate() {
         board.initialize();
         assertEquals(32, board.pieceCount());
-        assertEquals(16, Piece.getPieceCount(Piece.WHITE));
-        assertEquals(16, Piece.getPieceCount(Piece.BLACK));
+        assertEquals(16, Piece.getPieceCount(Piece.Color.WHITE));
+        assertEquals(16, Piece.getPieceCount(Piece.Color.BLACK));
 
         String boardRep
                 = "RNBQKBNR" + "\n"

@@ -7,7 +7,9 @@ package pieces;
  * @author emaph
  */
 public class Piece {
-    private final String color;
+
+    public enum Color { WHITE, BLACK, NONE }
+    private final Color color;
     private final String name;
 
     private static int whiteCount = 0;
@@ -20,11 +22,7 @@ public class Piece {
     public static final String QUEEN = "queen";
     public static final String KING = "king";
 
-    public static final String WHITE = "white";
-    public static final String BLACK = "black";
-    public static final String EMPTY = "none"; // Empty Piece represents emtpy square.
-
-    private Piece(String color, char representation) {
+    private Piece(Color color, char representation) {
         this.color = color;
         this.name = getName(representation);
     }
@@ -36,7 +34,7 @@ public class Piece {
      * @param representation
      * @return a Piece
      */
-    public static Piece create(String color, char representation) {
+    public static Piece create(Color color, char representation) {
         Piece piece = new Piece(color, representation);
         pieceCount(color, representation);
         return piece;
@@ -69,16 +67,16 @@ public class Piece {
         return pieceName;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
     public boolean isWhite() {
-        return color.equals(WHITE);
+        return color == Color.WHITE;
     }
 
     public boolean isBlack() {
-        return color.equals(BLACK);
+        return color  == Color.BLACK;
     }
 
     /**
@@ -104,23 +102,23 @@ public class Piece {
             rep = '.';
         }
 
-        if (color.equals(BLACK)) {
+        if (color  == Color.BLACK) {
             rep = Character.toUpperCase(rep);
         }
 
         return rep;
     }
 
-    private static void pieceCount(String color, char rep) {
-        if (color.equals(Piece.WHITE)) {
+    private static void pieceCount(Color color, char rep) {
+        if (color == Color.WHITE) {
             ++whiteCount;
-        } else if (color.equals(Piece.BLACK)) {
+        } else if (color == Color.BLACK) {
             ++blackCount;
         }
     }
 
-    public static int getPieceCount(String color) {
-        if (color.equals(Piece.WHITE)) {
+    public static int getPieceCount(Color color) {
+        if (color == Color.WHITE) {
             return whiteCount;
         } else {
             return blackCount;
