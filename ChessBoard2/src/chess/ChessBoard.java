@@ -49,25 +49,25 @@ class ChessBoard {
         for (int i = 0; i < 8; i++) {
             Piece pawn;
             if (color == Piece.Color.WHITE) {
-                pawn = Piece.create(Piece.Color.WHITE, Piece.Type.PAWN);
+                pawn = Piece.createPawn(Piece.Color.WHITE);
             } else if (color == Piece.Color.BLACK) {
-                pawn = Piece.create(Piece.Color.BLACK, Piece.Type.PAWN);
+                pawn = Piece.createPawn(Piece.Color.BLACK);
             } else {
-                pawn = Piece.create(Piece.Color.NONE, Piece.Type.NO_PIECE);
+                pawn = Piece.noPiece();
             }
             rank.add(pawn);
         }
     }
 
     private void fillRankWithPieces(List<Piece> rank, Piece.Color color) {
-        rank.add(Piece.create(color, Piece.Type.ROOK));
-        rank.add(Piece.create(color, Piece.Type.KNIGHT));
-        rank.add(Piece.create(color, Piece.Type.BISHOP));
-        rank.add(Piece.create(color, Piece.Type.QUEEN));
-        rank.add(Piece.create(color, Piece.Type.KING));
-        rank.add(Piece.create(color, Piece.Type.BISHOP));
-        rank.add(Piece.create(color, Piece.Type.KNIGHT));
-        rank.add(Piece.create(color, Piece.Type.ROOK));
+        rank.add(Piece.createRook(color));
+        rank.add(Piece.createKnight(color));
+        rank.add(Piece.createBishop(color));
+        rank.add(Piece.createQueen(color));
+        rank.add(Piece.createKing(color));
+        rank.add(Piece.createBishop(color));
+        rank.add(Piece.createKnight(color));
+        rank.add(Piece.createRook(color));
     }
 
     /**
