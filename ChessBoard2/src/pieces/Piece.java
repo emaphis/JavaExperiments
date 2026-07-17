@@ -100,13 +100,19 @@ public class Piece {
      */
     public char getRepresentation() {
         char rep;
-        if (type == Type.PAWN)        rep = 'p';
-        else if (type == Type.KNIGHT) rep = 'n';
-        else if (type == Type.BISHOP) rep = 'b';
-        else if (type == Type.ROOK)   rep = 'r';
-        else if (type == Type.QUEEN)  rep = 'q';
-        else if (type == Type.KING)   rep = 'k';
-        else  rep = '.';
+        if (type == Type.PAWN)
+            rep = PAWN_REPRESENTATION;
+        else if (type == Type.KNIGHT)
+            rep = KNIGHT_REPRESENTATION;
+        else if (type == Type.BISHOP)
+            rep = BISHOP_REPRESENTATION;
+        else if (type == Type.ROOK)
+            rep = ROOK_REPRESENTATION;
+        else if (type == Type.QUEEN)
+            rep = QUEEN_REPRESENTATION;
+        else if (type == Type.KING)
+            rep = KING_REPRESENTATION;
+        else  rep = BLANK_REPRESENTATION;
 
         if (color  == Color.BLACK) {
             rep = Character.toUpperCase(rep);
